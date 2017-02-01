@@ -10,6 +10,11 @@ export default () => (
     </Layout>
 )
 
+
+//we can refactor these out into their own files later.. 
+//for now it's easier if we keep it all together
+//Eric would yell at us for using classes here....
+//I'd like to get around it, but I don't think there is a way with firebase
 class TeamForm extends React.Component {
   constructor(props) {
     super(props);
@@ -37,7 +42,6 @@ class TeamList extends React.Component {
   componentDidMount() {
     const teamsRef = Fb.db.teamsRef
     teamsRef.on('value', snap =>{
-      console.log(snap.val())
       this.setState(snap.val())
     })
   }
