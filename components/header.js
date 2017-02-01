@@ -1,7 +1,13 @@
+import Fb from '../lib/firebase'
+
+
 export default () => (
 <div>
   <header>
-    <h1>This is the header.. </h1>
+    <p>This is the header.. </p>
+  <button onClick={() => Fb.auth.signIn()} >signin</button>
+  <button onClick={() => Fb.auth.signOut()} >signout</button>
+  <button onClick={() => console.log(Fb.auth.currentUser().displayName)} >user</button>
   </header>
   <style jsx>{`
   header {
