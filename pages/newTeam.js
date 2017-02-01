@@ -18,17 +18,30 @@ export default () => (
 class TeamForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {name: ''};
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleMembersChange = this.handleMembersChange.bind(this);
   }
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleNameChange(event) {
+    this.setState({name: event.target.value});
+  }
+  handleMembersChange(event) {
+    this.setState({members: event.target.value});
+  }
+  parseMembersInput(members){
+    return members.split(" ")
   }
   render() {
     return (
       <div>
-        <input value={this.state.value} onChange={this.handleChange} />
-        <input type="submit" onClick={() => Fb.db.createTeam(this.state.value)}/>
+        <input value={this.state.name} onChange={this.handleNameChange} placeholder="name"/>
+        <input value={this.state.members} onChange={this.handleMembersChange} placeholder="members"/>
+        <input 
+          type="submit" 
+          onClick={() => 
+            Fb.db.createTeam(this.state.name,this.parseMembersInput(this.state.members))
+          }
+        />
       </div>
     )
   } 
