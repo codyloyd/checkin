@@ -13,7 +13,7 @@ export default ({ children, title = 'Check In!' }) => (
       <Header />
       { children }
     </div>
-  <style jsx>{`
+  <style>{`
   body {
     background: #DDFFDC;
     font-family: Arial, Helvetica, Sans;
@@ -22,6 +22,6 @@ export default ({ children, title = 'Check In!' }) => (
     max-width: 800px;
     margin: 0 auto;
   }
-  `}</style>  
+  `}</style>
   </div>
 )
