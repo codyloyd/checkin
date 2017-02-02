@@ -18,7 +18,7 @@ export default () => (
 class TeamForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {name: ''};
+    this.state = {name: '',members:''};
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleMembersChange = this.handleMembersChange.bind(this);
   }
@@ -61,8 +61,19 @@ class TeamList extends React.Component {
   render(){
     return(
       <ul>
-        {Object.values(this.state).map(team => <li>{team.name}</li>)}
+        {Object.entries(this.state).map(team => {
+          return (
+          <ListItem 
+            teamId={team[0]}
+            name={team[1].name}
+            onClick={Fb.db.editTeam}
+          />
+          )
+        })}
       </ul>
     )
   }
 } 
+
+const ListItem = ({teamId, name, onClick}) => 
+  <li onClick={() => onClick(teamId,["asdfasd","fdf","sfddsa"])}>{name}</li>
