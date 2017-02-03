@@ -1,7 +1,7 @@
 {
-  "name": "next-test",
-  "version": "1.0.0",
-  "description": "",
+  "name": "checkit",
+  "version": "0.1.0",
+  "description": "Remote scrum checkin app",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -14,5 +14,12 @@
     "firebase": "^3.6.7",
     "next": "^1.2.3",
     "react": "^15.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-standard": "^2.0.1"
   }
 }
