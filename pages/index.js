@@ -1,5 +1,6 @@
 import Layout from '../components/layout'
 // import Fb from '../lib/firebase'
+// import firebase from 'firebase'
 
 export default () => {
   return (
