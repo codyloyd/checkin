@@ -76,4 +76,4 @@ class TeamList extends React.Component {
 } 
 
 const ListItem = ({teamId, name, onClick}) => 
-  <li onClick={() => onClick(teamId,["asdfasd","fdf","sfddsa"])}>{name}</li>
+  <li onClick={() => onClick(teamId,["a","b","c","d","e"])}>{name}</li>

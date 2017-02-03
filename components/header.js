@@ -1,10 +1,12 @@
 import Fb from '../lib/firebase'
+import firebase from 'firebase'
 
+const user = firebase.auth().onAuthStateChanged(user => user)
 
 export default () => (
 <div>
   <header>
-    <p>This is the header.. </p>
+    <p>HEADER</p>
   <button onClick={() => Fb.auth.signIn()} >signin</button>
   <button onClick={() => Fb.auth.signOut()} >signout</button>
   <button onClick={() => Fb.auth.currentUser() ? console.log(Fb.auth.currentUser().displayName) : console.log('not logged in')} >user</button>
@@ -19,3 +21,4 @@ export default () => (
   `}</style>
 </div>
 )
+
