@@ -1,4 +1,5 @@
 import {auth} from '../lib/firebase'
+import Link from 'next/link'
 
 export default() => (
   <div>
@@ -9,6 +10,8 @@ export default() => (
       <button onClick={() => auth.currentUser()
         ? console.log(auth.currentUser().displayName, auth.currentUser().uid)
         : console.log('not logged in')}>user</button>
+        <Link href="/"><a>Dashboard</a></Link>
+        <Link href="/newTeam"><a>New Team</a></Link>
     </header>
     <style>
       {
@@ -16,9 +19,12 @@ export default() => (
           width: 100%;
           border: solid black 1px;
           padding: 10px;
-        }
+          }
+
+          a {
+            padding-left: 10px;
+          }
          `
       }</style>
   </div>
 )
-
