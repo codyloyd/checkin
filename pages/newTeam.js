@@ -8,7 +8,7 @@ export default () => (
       <h1>New Team</h1>
       <h2>Setup a new team here</h2>
       <TeamForm />
-      <h2>List of teams</h2>
+      <h2>List of teams... we don't really need this list, but it's useful for testing and debugging.  It will likely disappear when we nail down the UI later</h2>
       <TeamList />
     </Layout>
 )
