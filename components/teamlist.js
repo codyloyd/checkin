@@ -1,5 +1,4 @@
-import {db, auth} from '../lib/firebase'
-import firebase from 'firebase'
+import {db} from '../lib/firebase'
 
 export default class TeamList extends React.Component {
   constructor (props) {
@@ -13,16 +12,7 @@ export default class TeamList extends React.Component {
     // http://stackoverflow.com/questions/34544314/setstate-can-only-update-a-mounted-or-mounting-component-this-usually-mea
     if (this.refs.listOfTeams) {
       teamsRef.on('value', teamsnap => {
-        const user = auth.currentUser()
-        firebase.database().ref('users/' + user.uid)
-          .once('value')
-          .then(usersnap => usersnap.val().teams)
-          .then(teams => Object.keys(teamsnap.val())
-                          .filter(key => teams.indexOf(key) >= 0)
-                          .reduce((obj, key) => {
-                            obj[key] = teamsnap.val()[key]
-                            return obj
-                          }, {}))
+        db.filteredTeams(teamsnap.val())
           .then(filteredTeams => this.setState(filteredTeams))
       })
     }
