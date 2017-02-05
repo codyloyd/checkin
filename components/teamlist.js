@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import {db} from '../lib/firebase'
 
 export default class TeamList extends React.Component {
@@ -28,6 +29,7 @@ export default class TeamList extends React.Component {
           return (
           <ListItem
             key={team[0]}
+            teamId={team[0]}
             name={team[1].name}
             owner={team[1].owner}
             members={team[1].members.join(', ')}
@@ -40,4 +42,4 @@ export default class TeamList extends React.Component {
 }
 
 const ListItem = ({teamId, name, owner, members, onClick}) =>
-  <li>{name} - {owner} - {members}</li>
+  <li><Link href={`/manageTeam?id=${teamId}`}>{name}</Link> - {owner} - {members}</li>

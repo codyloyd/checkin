@@ -1,8 +1,16 @@
 import Layout from '../components/layout'
 
-export default () => (
-  <Layout title="Manage Team">
-    <h1>Manage Team</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sint officia cumque quas soluta, quae earum ea, quam exercitationem saepe veritatis fuga voluptatum dolor animi nesciunt voluptas eaque, consectetur porro!</p>
-  </Layout>
-)
+export default class extends React.Component {
+  static async getInitialProps ({ req, query: { id } }) {
+    console.log(id)
+    return {id}
+  } 
+  render () {
+    return (
+      <Layout>
+        <h1>Manage Team</h1>
+        <p>teamID: {this.props.id}</p>
+      </Layout>
+    )
+  }
+}
