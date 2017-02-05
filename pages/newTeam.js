@@ -10,6 +10,7 @@ export default () => (
       <TeamForm />
       <h2>List of teams... we don't really need this list, but it's useful for testing and debugging.  It will likely disappear when we nail down the UI later</h2>
       <TeamList />
+      <p>Agreed. We should have a toast or some kind of pop up confirming the team has been created (or error), then redirect them to the Dashboard (index.js) where they will see the new team listed.</p>
     </Layout>
 )
 

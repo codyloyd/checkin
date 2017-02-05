@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import {db} from '../lib/firebase'
 
@@ -9,10 +10,6 @@ export default class TeamList extends React.Component {
 
   componentDidMount () {
     const teamsRef = db.teamsRef
-    // Added this check to avoid error: setState(…): Can only update a mounted or mounting component
-    // http://stackoverflow.com/questions/34544314/setstate-can-only-update-a-mounted-or-mounting-component-this-usually-mea
-    // I'm confused by this one.. why wouldn't it be mounted?
-    // this code _should_ only be run after the component has mounted.
     if (this.refs.listOfTeams) {
       teamsRef.on('value', teamsnap => {
         db.filteredTeams(teamsnap.val())
