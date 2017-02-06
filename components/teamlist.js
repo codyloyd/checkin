@@ -11,9 +11,8 @@ export default class TeamList extends React.Component {
   componentDidMount () {
     const teamsRef = db.teamsRef
     if (this.refs.listOfTeams) {
-      teamsRef.on('value', teamsnap => {
-        db.filteredTeams(teamsnap.val())
-          .then(filteredTeams => this.setState(filteredTeams))
+      teamsRef.on('value', snap => {
+        this.setState(snap.val())
       })
     }
   }
