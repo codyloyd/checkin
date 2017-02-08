@@ -23,26 +23,18 @@ class TeamForm extends React.Component {
     super(props)
     this.state = {name: '', members: ''}
     this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleMembersChange = this.handleMembersChange.bind(this)
   }
   handleNameChange (event) {
     this.setState({name: event.target.value})
-  }
-  handleMembersChange (event) {
-    this.setState({members: event.target.value})
-  }
-  parseMembersInput (members) {
-    return members.split(' ')
   }
   render () {
     return (
       <div>
         <input value={this.state.name} onChange={this.handleNameChange} placeholder="name"/>
-        <input value={this.state.members} onChange={this.handleMembersChange} placeholder="members"/>
         <input
           type="submit"
           onClick={() =>
-            db.createTeam(this.state.name, this.parseMembersInput(this.state.members))
+            db.createTeam(this.state.name)
           }
         />
       </div>
