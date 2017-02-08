@@ -17,7 +17,6 @@ export default class extends React.Component {
       const {name, owner, joinCode} = data.val()
       this.setState({name, owner, joinCode})
     })
-
   }
   render () {
     console.log(this.props.id)

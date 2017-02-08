@@ -8,8 +8,7 @@ test('teamCode', (assert) => {
   assert.end()
 })
 
-
-// I wanted to test if the key matched a regex.. 
+// I wanted to test if the key matched a regex..
 // This might not be the best way to accomplish that.
 test('teamCode', (assert) => {
   const actual = teamCode()

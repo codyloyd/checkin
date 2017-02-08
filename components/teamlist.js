@@ -18,8 +18,8 @@ export default class TeamList extends React.Component {
   }
   componentWillUnmount () {
     db.teamsRef.off('value', snap => {
-        this.setState(snap.val())
-      })
+      this.setState(snap.val())
+    })
   }
 
   render () {
