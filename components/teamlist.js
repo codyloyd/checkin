@@ -33,7 +33,7 @@ export default class TeamList extends React.Component {
             teamId={team[0]}
             name={team[1].name}
             owner={team[1].owner}
-            joinKey={team[1].joinKey}
+            joinCode={team[1].joinCode}
             members={team[1].members.join(', ')}
           />
           )
@@ -43,5 +43,5 @@ export default class TeamList extends React.Component {
   }
 }
 
-const ListItem = ({teamId, name, owner, members, onClick, joinKey}) =>
-  <li><Link href={`/manageTeam?id=${teamId}`}>{name}</Link> - {owner} - {members} - Join Key: {joinKey}</li>
+const ListItem = ({teamId, name, owner, members, onClick, joinCode}) =>
+  <li><Link href={`/manageTeam?id=${teamId}`}>{name}</Link> - {owner} - {members} - Join Key: {joinCode}</li>
