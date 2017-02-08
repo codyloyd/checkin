@@ -1,5 +1,5 @@
 import test from 'tape'
-import teamCode from '../lib/teamKey'
+import teamCode from '../lib/teamCode'
 
 test('teamCode', (assert) => {
   const actual = teamCode()
