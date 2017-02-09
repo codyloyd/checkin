@@ -14,12 +14,6 @@ export default class TeamList extends React.Component {
       db.fetchTeams(teams).then(teams => this.setState(teams))
     })
   }
-  componentWillUnmount () {
-    db.teamsRef.off('value', snap => {
-      this.setState(snap.val())
-    })
-  }
-
   render () {
     return (
       <ul ref="listOfTeams">
