@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import {db} from '../lib/firebase'
+import {db, auth} from '../lib/firebase'
 
 export default class TeamList extends React.Component {
   constructor (props) {
@@ -9,12 +9,10 @@ export default class TeamList extends React.Component {
   }
 
   componentDidMount () {
-    const teamsRef = db.teamsRef
-    if (this.refs.listOfTeams) {
-      teamsRef.on('value', snap => {
-        this.setState(snap.val())
-      })
-    }
+    db.fetchUserData(auth.currentUser().uid).then(userData => {
+      const teams = userData.val().teams
+      db.fetchTeams(teams).then(teams => this.setState(teams))
+    })
   }
   componentWillUnmount () {
     db.teamsRef.off('value', snap => {

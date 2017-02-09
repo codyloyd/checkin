@@ -1,5 +1,6 @@
 import Layout from '../components/layout'
 import TeamList from '../components/teamlist'
+import {db, auth} from '../lib/firebase'
 // import Fb from '../lib/firebase'
 // import firebase from 'firebase'
 

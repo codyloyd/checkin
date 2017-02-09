@@ -39,3 +39,13 @@ test('fetch teams from array', assert => {
     assert.end()
   })
 })
+
+test('fetch user data from DB', assert => {
+  const userId = 'xnQTknyqsGgswUEiL4xpcQlYv0v1'
+  const expected = {teams: ['-KcYcPqHkT45hmBjGHEI'], username: 'codyloyd'}
+  db.fetchUserData(userId).then(data => {
+    const actual = data.val()
+    assert.deepEqual(actual, expected, 'fetchUserData should return correct user data')
+    assert.end()
+  })
+})
