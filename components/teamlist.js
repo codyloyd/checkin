@@ -9,20 +9,21 @@ export default class TeamList extends React.Component {
   }
 
   componentDidMount () {
-    db.currentUserRef.on('value', snap => {
-      if (auth.currentUser()) {
+    if (auth.currentUser()) {
+      db.currentUserRef().on('value', snap => {
         db.fetchUserData(auth.currentUser().uid).then(userData => {
           const teams = userData.val().teams
-          db.fetchTeams(teams).then(teams => this.setState(teams))
+          if (teams) {
+            db.fetchTeams(teams).then(teams => this.setState(teams))
+          }
         })
-      }
-    })
+      })
+    }
   }
   render () {
     return (
       <ul ref="listOfTeams">
         {Object.entries(this.state).map(team => {
-          console.log(team)
           return (
           <ListItem
             key={team[0]}
