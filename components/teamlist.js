@@ -9,9 +9,13 @@ export default class TeamList extends React.Component {
   }
 
   componentDidMount () {
-    db.fetchUserData(auth.currentUser().uid).then(userData => {
-      const teams = userData.val().teams
-      db.fetchTeams(teams).then(teams => this.setState(teams))
+    db.currentUserRef.on('value', snap => {
+      if (auth.currentUser()) {
+        db.fetchUserData(auth.currentUser().uid).then(userData => {
+          const teams = userData.val().teams
+          db.fetchTeams(teams).then(teams => this.setState(teams))
+        })
+      }
     })
   }
   render () {
