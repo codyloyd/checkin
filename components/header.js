@@ -12,6 +12,7 @@ export default() => (
         : console.log('not logged in')}>user</button>
         <Link href="/"><a>Dashboard</a></Link>
         <Link href="/newTeam"><a>New Team</a></Link>
+        <Link href="/joinTeam"><a>Join Team</a></Link>
     </header>
     <style>
       {

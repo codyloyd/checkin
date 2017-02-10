@@ -1,8 +1,34 @@
 import Layout from '../components/layout'
+import {db} from '../lib/firebase'
 
 export default () => (
   <Layout title="Join Team">
     <h1>Join Team</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sint officia cumque quas soluta, quae earum ea, quam exercitationem saepe veritatis fuga voluptatum dolor animi nesciunt voluptas eaque, consectetur porro!</p>
+    <p>heeeeere we goooooo</p>
+    <JoinForm />
   </Layout>
 )
+
+class JoinForm extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {code: ''}
+    this.handleCodeChange = this.handleCodeChange.bind(this)
+  }
+  handleCodeChange (event) {
+    this.setState({code: event.target.value})
+  }
+  render () {
+    return (
+      <div>
+        <input value={this.state.code} onChange={this.handleCodeChange} placeholder="enter code here"/>
+        <input
+          type="submit"
+          onClick={() =>
+            db.joinTeam(this.state.code)
+          }
+        />
+      </div>
+    )
+  }
+}

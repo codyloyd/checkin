@@ -49,3 +49,21 @@ test('fetch user data from DB', assert => {
     assert.end()
   })
 })
+
+test('fetch team with teamCode', assert => {
+  const joinCode = 'testing'
+  const expected = {
+    testing: {
+      joinCode: 'testing',
+      name: 'test team',
+      owner: 'test owner',
+      members: ['foo', 'bar', 'baz']
+    }
+  }
+  db.fetchTeamWithCode(joinCode).then(data => {
+    const actual = data.val()
+    assert.deepEqual(actual, expected, 'fetchTeamWithCode should fetch a team')
+    assert.end()
+  })
+  .catch(e => console.log(e))
+})
