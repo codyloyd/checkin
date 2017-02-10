@@ -2,7 +2,7 @@ import test from 'tape'
 import {db} from '../lib/firebase'
 
 test('fetch single team with Key', assert => {
-  const teamId = '-KcTJlYb35AN3NvaAn10'
+  const teamId = 'testing'
   const expected = {
     joinCode: 'testing',
     name: 'test team',
@@ -18,7 +18,7 @@ test('fetch single team with Key', assert => {
 })
 
 test('fetch teams from array', assert => {
-  const teams = ['-KcTJlYb35AN3NvaAn10', '-KcU5trhklFfqbepyGY9']
+  const teams = ['testing', 'testing2']
   const expected = [
     {
       joinCode: 'testing',
@@ -42,7 +42,7 @@ test('fetch teams from array', assert => {
 
 test('fetch user data from DB', assert => {
   const userId = 'xnQTknyqsGgswUEiL4xpcQlYv0v1'
-  const expected = {teams: ['-KcYcPqHkT45hmBjGHEI'], username: 'codyloyd'}
+  const expected = {teams: ['testing', 'testing2'], username: 'codyloyd'}
   db.fetchUserData(userId).then(data => {
     const actual = data.val()
     assert.deepEqual(actual, expected, 'fetchUserData should return correct user data')

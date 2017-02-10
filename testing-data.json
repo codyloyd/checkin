@@ -1,0 +1,23 @@
+{
+  
+  "teams" : {
+    "testing" : {
+      "joinCode" : "testing",
+      "members" : [ "foo", "bar", "baz" ],
+      "name" : "test team",
+      "owner" : "test owner"
+    },
+    "testing2" : {
+      "joinCode" : "testing2",
+      "members" : [ "foo", "bar", "baz" ],
+      "name" : "test team 2",
+      "owner" : "test owner"
+    }
+  },
+  "users" : {
+    "xnQTknyqsGgswUEiL4xpcQlYv0v1" : {
+      "teams" : [ "testing", "testing2" ],
+      "username" : "codyloyd"
+    }
+  }
+}
