@@ -21,7 +21,6 @@ export default class TeamList extends React.Component {
     }
   }
   render () {
-    console.log(this.state)
     return (
       <ul ref="listOfTeams">
         {Object.entries(this.state).map(team => {
