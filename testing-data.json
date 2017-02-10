@@ -12,6 +12,12 @@
       "members" : [ "foo", "bar", "baz" ],
       "name" : "test team 2",
       "owner" : "test owner"
+    },
+    "testing3" : {
+      "joinCode" : "testing3",
+      "members" : [ "foo", "bar", "baz" ],
+      "name" : "test team 3",
+      "owner" : "test owner"
     }
   },
   "users" : {
