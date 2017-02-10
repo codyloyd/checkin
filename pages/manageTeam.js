@@ -15,12 +15,10 @@ export default class extends React.Component {
   componentDidMount () {
     db.fetchTeamWithId(this.props.id).then(data => {
       const {name, owner, joinCode} = data.val()
-      console.log(data.val())
       this.setState({name, owner, joinCode})
     })
   }
   render () {
-    console.log(this.props.id)
     return (
       <Layout>
         <h1>Manage Team</h1>
