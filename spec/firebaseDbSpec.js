@@ -19,25 +19,25 @@ test('fetch single team with Key', assert => {
 
 test('fetch teams from array', assert => {
   const teams = ['testing', 'testing2']
-  const expected = [
-    {
+  const expected = {
+    testing: {
       joinCode: 'testing',
       name: 'test team',
       owner: 'test owner',
       members: ['foo', 'bar', 'baz']
     },
-    {
+    testing2: {
       joinCode: 'testing2',
       name: 'test team 2',
       owner: 'test owner',
       members: ['foo', 'bar', 'baz']
     }
-  ]
+  }
   db.fetchTeams(teams).then(data => {
     const actual = data
     assert.deepEqual(actual, expected, 'fetchTeams should return an array of teams')
     assert.end()
-  })
+  }).catch(e => console.log(e))
 })
 
 test('fetch user data from DB', assert => {
