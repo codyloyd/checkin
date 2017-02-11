@@ -14,7 +14,8 @@
   "dependencies": {
     "firebase": "^3.6.7",
     "next": "^1.2.3",
-    "react": "^15.4.2"
+    "react": "^15.4.2",
+    "react-materialize": "^0.18.1"
   },
   "devDependencies": {
     "tape": "^4.6.3",

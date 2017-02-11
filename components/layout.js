@@ -4,28 +4,19 @@ import Header from './header'
 
 export default({
   children,
-  title = 'Check In!'
+  title = '✔️️CheckIt!'
 }) => (
   <div>
     <Head>
       <title>{title}</title>
       <meta charSet='utf-8'/>
       <meta name='viewport' content='initial-scale=1.0, width=device-width'/>
+      <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
     </Head>
+    <Header/>
     <div className="container">
-      <Header/> {children}
+      {children}
     </div>
-    <style>
-      {
-        ` body {
-          background: #eee;
-          font-family: Arial, Helvetica, Sans;
-        }
-        .container {
-          max-width: 800px;
-          margin: 0 auto;
-        }
-         `
-      }</style>
   </div>
 )

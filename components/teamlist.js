@@ -22,7 +22,7 @@ export default class TeamList extends React.Component {
   }
   render () {
     return (
-      <ul ref="listOfTeams">
+      <div>
         {Object.entries(this.state).map(team => {
           return (
           <ListItem
@@ -35,10 +35,33 @@ export default class TeamList extends React.Component {
           />
           )
         })}
-      </ul>
+      </div>
     )
   }
 }
 
-const ListItem = ({teamId, name, owner, members, onClick, joinCode}) =>
-  <li><Link href={`/manageTeam?id=${teamId}`}>{name}</Link> - {owner} - {members} - Join Key: {joinCode}</li>
+const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
+  return (
+    <div className="row">
+      <div className="card blue-grey lighten-5">
+        <div className="card-content">
+          <span className="card-title">
+            {name}
+          </span>
+          <p className="flow-text">
+          Team Owner: {owner}
+          </p>
+          <p className="flow-text">
+          Team Members: {members}
+          </p>
+          <p className="flow-text">
+          Join Key: {joinCode}
+          </p>
+          <div className="card-action">
+            <Link href={`/manageTeam?id=${teamId}`}> GO TO TEAM </Link> 
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

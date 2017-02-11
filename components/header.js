@@ -2,30 +2,24 @@ import {auth} from '../lib/firebase'
 import Link from 'next/link'
 
 export default() => (
-  <div>
-    <header>
-      <div>This is the header</div>
-      <button onClick={() => auth.signIn()}>signin</button>
-      <button onClick={() => auth.signOut()}>signout</button>
-      <button onClick={() => auth.currentUser()
-        ? console.log(auth.currentUser().displayName, auth.currentUser().uid)
-        : console.log('not logged in')}>user</button>
-        <Link href="/"><a>Dashboard</a></Link>
-        <Link href="/newTeam"><a>New Team</a></Link>
-        <Link href="/joinTeam"><a>Join Team</a></Link>
-    </header>
-    <style>
-      {
-        ` header {
-          width: 100%;
-          border: solid black 1px;
-          padding: 10px;
-          }
-
-          a {
-            padding-left: 10px;
-          }
-         `
-      }</style>
+  <div className="navbar-fixed">
+    <nav>
+      <div className="nav-wrapper blue">
+        <div className="brand-logo"><i className="large material-icons">done</i>CheckIt</div>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <li><Link href="/"><a>Dashboard</a></Link></li>
+          <li><Link href="/newTeam"><a>New Team</a></Link></li>
+          <li><Link href="/joinTeam"><a>Join Team</a></Link></li>
+          <li><SignInButton currentUser={auth.currentUser()}/></li>
+        </ul>
+      </div>
+    </nav>
   </div>
 )
+
+const SignInButton = ({currentUser}) => {
+  if (!currentUser) {
+    return <a className="btn green" onClick={() => auth.signIn()}>sign in</a>
+  }
+  return <a className="btn green" onClick={() => auth.signOut()}>signout</a>
+}

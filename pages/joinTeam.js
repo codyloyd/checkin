@@ -4,7 +4,7 @@ import {db} from '../lib/firebase'
 export default () => (
   <Layout title="Join Team">
     <h1>Join Team</h1>
-    <p>heeeeere we goooooo</p>
+    <p>Enter the code your team manager gives you to join a team!</p>
     <JoinForm />
   </Layout>
 )
