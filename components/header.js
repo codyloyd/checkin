@@ -6,7 +6,7 @@ export default() => (
     <nav>
       <div className="nav-wrapper blue">
         <div className="brand-logo"><i className="large material-icons">done</i>CheckIt</div>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <ul className="right hide-on-med-and-down">
           <li><Link href="/"><a>Dashboard</a></Link></li>
           <li><Link href="/newTeam"><a>New Team</a></Link></li>
           <li><Link href="/joinTeam"><a>Join Team</a></Link></li>
