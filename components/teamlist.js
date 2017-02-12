@@ -60,6 +60,7 @@ const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
         </div>
           <div className="card-action">
             <Link href={`/manageTeam?id=${teamId}`}> GO TO TEAM </Link> 
+            <Link href={`/checkIn?id=${teamId}`}> CHECK IN</Link> 
           </div>
       </div>
     </div>

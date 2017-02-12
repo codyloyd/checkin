@@ -1,8 +1,35 @@
 import Layout from '../components/layout'
+import {db} from '../lib/firebase'
 
-export default () => (
-  <Layout title="Check In">
-    <h1>Checkin</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sint officia cumque quas soluta, quae earum ea, quam exercitationem saepe veritatis fuga voluptatum dolor animi nesciunt voluptas eaque, consectetur porro!</p>
-  </Layout>
-)
+export default class extends React.Component {
+  static async getInitialProps ({ req, query: { id } }) {
+    return {id}
+  }
+  constructor () {
+    super()
+    this.state = {
+      name: '',
+      owner: ''
+    }
+  }
+  componentDidMount () {
+    db.fetchTeamWithId(this.props.id).then(data => {
+      const {name, owner, joinCode} = data.val()
+      this.setState({name, owner, joinCode})
+    })
+  }
+  render () {
+    return (
+      <Layout>
+        <h1>Check in to <span className="blue-text extra-bold">{this.state.name}</span></h1>
+        <CheckInForm />
+      </Layout>
+    )
+  }
+}
+
+const CheckInForm = props => {
+  return (
+    <input type='text' placeholder='still gotta build the form'/>
+  )
+}
