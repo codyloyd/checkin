@@ -13,9 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "firebase": "^3.6.7",
+    "moment": "^2.17.1",
     "next": "^1.2.3",
-    "react": "^15.4.2",
-    "react-materialize": "^0.18.1"
+    "react": "^15.4.2"
   },
   "devDependencies": {
     "tape": "^4.6.3",

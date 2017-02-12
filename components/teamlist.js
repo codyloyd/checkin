@@ -43,11 +43,11 @@ export default class TeamList extends React.Component {
 const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
   return (
     <div className="row">
-      <div className="card z-depth-2 grey lighten-5">
+      <div className="card z-depth-2 grey lighten-5 hoverable">
         <div className="card-content">
-          <span className="card-title">
+          <div className="card-title">
             {name}
-          </span>
+          </div>
           <p className="flow-text">
           Team Owner: {owner}
           </p>

@@ -30,7 +30,10 @@ class TeamForm extends React.Component {
   render () {
     return (
       <div>
-        <input value={this.state.name} onChange={this.handleNameChange} placeholder="name"/>
+      <div className="input-field">
+        <input id='name' value={this.state.name} onChange={this.handleNameChange} />
+        <label for='name'>Team Name</label>
+      </div>
         <input
           type="submit"
           onClick={() =>
