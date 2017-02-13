@@ -11,6 +11,7 @@ export default({
       <title>{title}</title>
       <meta charSet='utf-8'/>
       <meta name='viewport' content='initial-scale=1.0, width=device-width'/>
+      <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" />
       <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
