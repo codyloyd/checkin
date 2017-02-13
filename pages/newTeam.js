@@ -1,17 +1,17 @@
 import React from 'react'
+
 import Layout from '../components/layout'
 import {db} from '../lib/firebase'
 import TeamList from '../components/teamlist'
 
 export default () => (
-    <Layout title="New Team">
-      <h1>New Team</h1>
-      <h2>Setup a new team here</h2>
-      <TeamForm />
-      <p>List of teams... we don't really need this list, but it's useful for testing and debugging.  It will likely disappear when we nail down the UI later</p>
-      <TeamList />
-      <p>Agreed. We should have a toast or some kind of pop up confirming the team has been created (or error), then redirect them to the Dashboard (index.js) where they will see the new team listed.</p>
-    </Layout>
+  <Layout title="New Team">
+    <h1>New Team</h1>
+    <h2>Setup a new team here</h2>
+    <TeamForm />
+    <p>List of teams (for testing)</p>
+    <TeamList />
+  </Layout>
 )
 
 // we can refactor these out into their own files later..
@@ -32,7 +32,7 @@ class TeamForm extends React.Component {
       <div>
       <div className="input-field">
         <input id='name' value={this.state.name} onChange={this.handleNameChange} />
-        <label for='name'>Team Name</label>
+        <label htmlFor='name'>Team Name</label>
       </div>
         <input
           type="submit"

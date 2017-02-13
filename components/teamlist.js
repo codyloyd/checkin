@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+
 import {db, auth} from '../lib/firebase'
 
 export default class TeamList extends React.Component {
@@ -59,8 +60,8 @@ const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
           </p>
         </div>
           <div className="card-action">
-            <Link href={`/manageTeam?id=${teamId}`}> GO TO TEAM </Link> 
-            <Link href={`/checkIn?id=${teamId}`}> CHECK IN</Link> 
+            <Link href={`/manageTeam?id=${teamId}`}> GO TO TEAM </Link>
+            <Link href={`/checkIn?id=${teamId}`}> CHECK IN</Link>
           </div>
       </div>
     </div>
