@@ -62,7 +62,7 @@ class CheckInForm extends React.Component {
         <input onChange={this.handleChange} name='q2' type='text' placeholder='What are you doing today?'/>
         <p className='blue-text text-darken-3'>Is there anything blocking you?</p>
         <input onChange={this.handleChange} name='q3' type='text' placeholder='Is there anything blocking you?'/>
-        <button type='submit' className='btn green'>Submit</button>
+        <button type='submit' className='btn green waves-effect waves-light'>Submit</button>
       </form>
     )
   }

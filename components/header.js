@@ -20,7 +20,7 @@ export default() => (
 
 const SignInButton = ({currentUser}) => {
   if (!currentUser) {
-    return <a className="btn green" onClick={() => auth.signIn()}>sign in</a>
+    return <a className="btn green waves-effect waves-light" onClick={() => auth.signIn()}>sign in</a>
   }
   return <a className="btn green" onClick={() => auth.signOut()}>signout</a>
 }
