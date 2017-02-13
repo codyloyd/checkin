@@ -2,7 +2,7 @@
   "name": "checkit",
   "version": "0.1.0",
   "description": "Remote scrum checkin app",
-  "main": "index.js",
+  "main": "./pages/index.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
