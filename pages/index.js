@@ -1,5 +1,6 @@
 import Layout from '../components/layout'
 import TeamList from '../components/teamlist'
+import SignInMessage from '../components/signInMessage'
 import firebase from 'firebase'
 
 const Title = ({title}) => <h1>{title}</h1>
@@ -28,7 +29,7 @@ export default class extends React.Component {
     } else {
       return (
         <Layout>
-          <Welcome />
+          <SignInMessage />
         </Layout>
       )
     }
@@ -42,8 +43,3 @@ const Dashboard = props => (
   </div>
 )
 
-const Welcome = props => (
-  <div>
-    <Title title="YOU SHOULD SIGN IN NOW" />
-  </div>
-)
