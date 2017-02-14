@@ -36,10 +36,12 @@ export default class extends React.Component {
   }
 }
 
-const Dashboard = props => (
+const Dashboard = props => {
+  return (
   <div>
     <Title title="Dashboard" />
     <TeamList />
   </div>
-)
+  )
+}
 
