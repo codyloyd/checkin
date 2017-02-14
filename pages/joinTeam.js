@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 
 import Layout from '../components/layout'
 import {db} from '../lib/firebase'
@@ -26,8 +27,11 @@ class JoinForm extends React.Component {
         <input value={this.state.code} onChange={this.handleCodeChange} placeholder="enter code here"/>
         <input
           type="submit"
-          onClick={() =>
-            db.joinTeam(this.state.code)
+          onClick={() => {
+            db.joinTeam(this.state.code).then(teamId => {
+              Router.push(`/manageTeam?id=${teamId}`)
+            }).catch(e => console.log('SOMETHING WENT WRONG'))
+          }
           }
         />
       </div>

@@ -23,8 +23,10 @@ export default class extends React.Component {
       this.setState({name, owner, joinCode})
     })
     db.getRecentCheckins(this.props.id).then(data => {
-      this.setState({checkins: data.val()})
-    })
+      if (data.val()) {
+        this.setState({checkins: data.val()})
+      }
+    }).catch(e => console.log(e))
   }
   render () {
     return (

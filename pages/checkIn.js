@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 
 import Layout from '../components/layout'
 import {db} from '../lib/firebase'
@@ -51,7 +52,9 @@ class CheckInForm extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
     console.log(this.state)
-    db.addCheckIn(this.state)
+    db.addCheckIn(this.state).then(
+      Router.push(`/manageTeam?id=${this.props.teamId}`)
+    )
   }
   render () {
     return (
