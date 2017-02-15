@@ -1,3 +1,6 @@
+import React from 'react'
+import firebase from 'firebase'
+
 import Layout from '../components/layout'
 import TeamList from '../components/teamlist'
 import SignInMessage from '../components/signInMessage'
@@ -44,4 +47,3 @@ const Dashboard = props => {
   </div>
   )
 }
-
