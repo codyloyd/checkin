@@ -6,7 +6,7 @@ import {db, auth} from '../lib/firebase'
 export default class TeamList extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state
   }
 
   componentDidMount () {
