@@ -12,14 +12,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
     "firebase": "^3.6.7",
     "moment": "^2.17.1",
-    "next": "^2.0.0-beta.25",
-    "react": "^15.4.2"
+    "next": "^2.0.0-beta.26",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "tape": "^4.6.3",
-    "babel-preset-es2015": "^6.22.0",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
