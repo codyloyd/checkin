@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import React from 'react'
 
 import {auth} from '../lib/firebase'
 import firebase from 'firebase'

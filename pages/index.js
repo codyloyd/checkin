@@ -4,7 +4,6 @@ import firebase from 'firebase'
 import Layout from '../components/layout'
 import TeamList from '../components/teamlist'
 import SignInMessage from '../components/signInMessage'
-import firebase from 'firebase'
 
 const Title = ({title}) => <h1>{title}</h1>
 
