@@ -22,7 +22,7 @@ export default class TeamList extends React.Component {
     }
   }
   render () {
-    if (this.state.teams) {
+    if (this.state) {
       return (
         <div>
           {Object.entries(this.state).map(team => {
