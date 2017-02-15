@@ -8,6 +8,7 @@ Users can sign in with GitHub, create and Join SCRUM teams and then do daily "ch
 - What did you do on the last workday?
 - What are you doing today?
 - Is there anything blocking you?
+
 ## Live Demo:
 [https://checkit-kinupmqbuc.now.sh/](https://checkit-kinupmqbuc.now.sh/)
 
