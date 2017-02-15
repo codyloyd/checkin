@@ -10,7 +10,7 @@ Users can sign in with GitHub, create and Join SCRUM teams and then do daily "ch
 - Is there anything blocking you?
 
 ## Live Demo:
-[https://checkit-kinupmqbuc.now.sh/](https://checkit-kinupmqbuc.now.sh/)
+[https://checkit-ksdresrhkw.now.sh](https://checkit-ksdresrhkw.now.sh)
 
 ## run locally:
 clone the repo then:
