@@ -12,10 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase": "^3.6.7",
+    "firebase": "^3.6.9",
     "moment": "^2.17.1",
-    "next": "^2.0.0-beta.25",
-    "react": "^15.4.2"
+    "next": "^2.0.0-beta.26",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "tape": "^4.6.3",

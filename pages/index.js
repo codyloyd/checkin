@@ -1,6 +1,8 @@
+import React from 'react'
+import firebase from 'firebase'
+
 import Layout from '../components/layout'
 import TeamList from '../components/teamlist'
-import firebase from 'firebase'
 
 const Title = ({title}) => <h1>{title}</h1>
 
@@ -44,6 +46,6 @@ const Dashboard = props => (
 
 const Welcome = props => (
   <div>
-    <Title title="YOU SHOULD SIGN IN NOW" />
+    <h5>Please sign in to get started</h5>
   </div>
 )

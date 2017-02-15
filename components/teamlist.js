@@ -22,22 +22,30 @@ export default class TeamList extends React.Component {
     }
   }
   render () {
-    return (
-      <div>
-        {Object.entries(this.state).map(team => {
-          return (
-          <ListItem
-            key={team[0]}
-            teamId={team[0]}
-            name={team[1].name}
-            owner={team[1].owner}
-            joinCode={team[1].joinCode}
-            members={team[1].members.join(', ')}
-          />
-          )
-        })}
-      </div>
-    )
+    if (this.state.teams) {
+      return (
+        <div>
+          {Object.entries(this.state).map(team => {
+            return (
+            <ListItem
+              key={team[0]}
+              teamId={team[0]}
+              name={team[1].name}
+              owner={team[1].owner}
+              joinCode={team[1].joinCode}
+              members={team[1].members.join(', ')}
+            />
+            )
+          })}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h5>You need to join or create a new team</h5>
+        </div>
+      )
+    }
   }
 }
 
