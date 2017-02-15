@@ -1,16 +1,44 @@
 import React from 'react'
 import Router from 'next/router'
 
+import SignInMessage from '../components/signInMessage'
 import Layout from '../components/layout'
+import firebase from 'firebase'
 import {db} from '../lib/firebase'
-import TeamList from '../components/teamlist'
 
-export default () => (
-  <Layout title="New Team">
-    <h1>New Team</h1>
-    <TeamForm />
-  </Layout>
-)
+export default class extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      currentUser: null
+    }
+  }
+  componentDidMount () {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({currentUser: user})
+      } else {
+        this.setState({currentUser: null})
+      }
+    }).bind(this)
+  }
+  render () {
+    if (this.state.currentUser) {
+      return (
+        <Layout title="New Team">
+          <h1>New Team</h1>
+          <TeamForm />
+        </Layout>
+      )
+    } else {
+      return (
+        <Layout>
+          <SignInMessage />
+        </Layout>
+      )
+    }
+  }
+}
 
 class TeamForm extends React.Component {
   constructor (props) {

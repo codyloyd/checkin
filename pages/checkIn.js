@@ -2,6 +2,8 @@ import React from 'react'
 import Router from 'next/router'
 
 import Layout from '../components/layout'
+import SignInMessage from '../components/signInMessage'
+import firebase from 'firebase'
 import {db} from '../lib/firebase'
 
 export default class extends React.Component {
@@ -12,7 +14,8 @@ export default class extends React.Component {
     super()
     this.state = {
       name: '',
-      owner: ''
+      owner: '',
+      currentUser: null
     }
   }
   componentDidMount () {
@@ -20,14 +23,29 @@ export default class extends React.Component {
       const {name, owner, joinCode} = data.val()
       this.setState({name, owner, joinCode})
     })
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({currentUser: user})
+      } else {
+        this.setState({currentUser: null})
+      }
+    }).bind(this)
   }
   render () {
-    return (
-      <Layout>
-        <h1>Check in to <span className="blue-text extra-bold">{this.state.name}</span></h1>
-        <CheckInForm teamId={this.props.id}/>
-      </Layout>
-    )
+    if (this.state.currentUser) {
+      return (
+        <Layout>
+          <h1>Check in to <span className="blue-text extra-bold">{this.state.name}</span></h1>
+          <CheckInForm teamId={this.props.id}/>
+        </Layout>
+      )
+    } else {
+      return (
+        <Layout>
+          <SignInMessage/>
+        </Layout>
+      )
+    }
   }
 }
 

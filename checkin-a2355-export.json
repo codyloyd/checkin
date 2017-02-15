@@ -1,0 +1,65 @@
+{
+  "checkins" : {
+    "-KcoiF2wlFGR7w0sf9Fb" : {
+      "q1" : "one",
+      "q2" : "two",
+      "q3" : "three",
+      "teamId" : "testing",
+      "time" : 1486943160801,
+      "userId" : "xnQTknyqsGgswUEiL4xpcQlYv0v1",
+      "userName" : "Cody Loyd"
+    },
+    "-KcrpYaJvn0anoMt_tGc" : {
+      "q1" : "Everything but working.",
+      "q2" : "Try to do a little work.",
+      "q3" : "My desire to not work.",
+      "teamId" : "testing",
+      "time" : 1486995470073,
+      "userId" : "IVGegoDEDNeaOd6dyMn6aYPIPhU2",
+      "userName" : "thoragio"
+    },
+    "-KcrpatRfAZpAf-Z4-aP" : {
+      "q1" : "Everything but working.",
+      "q2" : "Try to do a little work.",
+      "q3" : "My desire to not work.",
+      "teamId" : "testing2",
+      "time" : 1486995483584,
+      "userId" : "IVGegoDEDNeaOd6dyMn6aYPIPhU2",
+      "userName" : "thoragio"
+    }
+  },
+  "teams" : {
+    "testing" : {
+      "joinCode" : "testing",
+      "members" : [ "foo", "bar", "baz", "Cody Loyd", "thoragio", "Arun Kumar"],
+      "name" : "test team",
+      "owner" : "test owner"
+    },
+    "testing2" : {
+      "joinCode" : "testing2",
+      "members" : [ "foo", "bar", "baz", "Cody Loyd", "thoragio"],
+      "name" : "test team 2",
+      "owner" : "test owner"
+    },
+    "testing3" : {
+      "joinCode" : "testing3",
+      "members" : [ "foo", "bar", "baz", "Cody Loyd" ],
+      "name" : "test team 3",
+      "owner" : "test owner"
+    }
+  },
+  "users" : {
+    "IVGegoDEDNeaOd6dyMn6aYPIPhU2" : {
+      "teams" : [ "testing", "testing2" ],
+      "username" : "thoragio"
+    },
+    "dhP6vDYsYoRXMZW1pQIGA2Ds26t2" : {
+      "teams" : ["testing"],
+      "username" : "arun1595"
+    },
+    "xnQTknyqsGgswUEiL4xpcQlYv0v1" : {
+      "teams" : [ "testing", "testing2", "testing3"],
+      "username" : "codyloyd"
+    }
+  }
+}

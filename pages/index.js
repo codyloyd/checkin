@@ -3,6 +3,8 @@ import firebase from 'firebase'
 
 import Layout from '../components/layout'
 import TeamList from '../components/teamlist'
+import SignInMessage from '../components/signInMessage'
+import firebase from 'firebase'
 
 const Title = ({title}) => <h1>{title}</h1>
 
@@ -30,22 +32,18 @@ export default class extends React.Component {
     } else {
       return (
         <Layout>
-          <Welcome />
+          <SignInMessage />
         </Layout>
       )
     }
   }
 }
 
-const Dashboard = props => (
+const Dashboard = props => {
+  return (
   <div>
     <Title title="Dashboard" />
     <TeamList />
   </div>
-)
-
-const Welcome = props => (
-  <div>
-    <h5>Please sign in to get started</h5>
-  </div>
-)
+  )
+}
