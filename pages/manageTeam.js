@@ -1,7 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import moment from 'moment'
+import firebase from 'firebase'
 
+import SignInMessage from '../components/signInMessage'
 import Layout from '../components/layout'
 import {db} from '../lib/firebase'
 
@@ -27,23 +29,38 @@ export default class extends React.Component {
         this.setState({checkins: data.val()})
       }
     }).catch(e => console.log(e))
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({currentUser: user})
+      } else {
+        this.setState({currentUser: null})
+      }
+    }).bind(this)
   }
   render () {
-    return (
-      <Layout>
-        <h1 className='blue-text extra-bold'>{this.state.name}</h1>
-        <p>team owner: {this.state.owner}</p>
-        <p>member join code: {this.state.joinCode}</p>
-        <Link href={`/checkIn?id=${this.props.id}`}><a className='btn green waves-effect waves-light'>CHECK IN</a></Link>
-        
-        <h3>Recent Checkins:</h3>
-        {Object.values(this.state.checkins).reverse().map(checkin => {
-          return (
-            <Checkin key={checkin.time} checkin={checkin} />
-          )
-        })}
-      </Layout>
-    )
+    if (this.state.currentUser){
+      return (
+        <Layout>
+          <h1 className='blue-text extra-bold'>{this.state.name}</h1>
+          <p>team owner: {this.state.owner}</p>
+          <p>member join code: {this.state.joinCode}</p>
+          <Link href={`/checkIn?id=${this.props.id}`}><a className='btn green waves-effect waves-light'>CHECK IN</a></Link>
+          
+          <h3>Recent Checkins:</h3>
+          {Object.values(this.state.checkins).reverse().map(checkin => {
+            return (
+              <Checkin key={checkin.time} checkin={checkin} />
+            )
+          })}
+        </Layout>
+      )
+    } else {
+      return (
+        <Layout>
+          <SignInMessage/>
+        </Layout>
+      )
+    }
   }
 }
 
