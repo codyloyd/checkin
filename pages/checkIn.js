@@ -69,6 +69,9 @@ class CheckInForm extends React.Component {
   }
   handleSubmit (event) {
     event.preventDefault()
+    if (
+      this.state.q1 === '' || this.state.q2 === '' || this.state.q3 === ''
+    ) { return }
     console.log(this.state)
     db.addCheckIn(this.state).then(
       Router.push(`/manageTeam?id=${this.props.teamId}`)
