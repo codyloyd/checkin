@@ -44,23 +44,35 @@ export default class extends React.Component {
 class JoinForm extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {code: ''}
+    this.state = {
+      code: '',
+      invalidCode: false
+    }
     this.handleCodeChange = this.handleCodeChange.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
   handleCodeChange (event) {
     this.setState({code: event.target.value})
   }
+  handleError (e) {
+    this.setState({invalidCode: true})
+    console.log('Invalid join code', e)
+  }
   render () {
+    const invalidCode = this.state.invalidCode
     return (
       <div>
-        <input value={this.state.code} onChange={this.handleCodeChange} placeholder="enter code here"/>
+        <input className={invalidCode ? 'red' : ''} value={this.state.code} onChange={this.handleCodeChange} placeholder="enter code here"/>
+        {invalidCode &&
+          <div style={{color: 'red'}}>Please enter a valid code<br /><br /></div>
+        }
         <input
           className='btn green lighten-2 hoverable'
           type="submit"
           onClick={() => {
             db.joinTeam(this.state.code).then(teamId => {
               Router.push(`/manageTeam?id=${teamId}`)
-            }).catch(e => console.log('SOMETHING WENT WRONG'))
+            }).catch(e => this.handleError(e))
           }
           }
         />
