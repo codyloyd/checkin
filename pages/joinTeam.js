@@ -26,8 +26,6 @@ export default class extends React.Component {
     if (this.state.currentUser) {
       return (
       <Layout title="Join Team">
-        <h1>Join Team</h1>
-        <p>Enter the code your team manager gives you to join a team!</p>
         <JoinForm />
       </Layout>
       )
@@ -61,21 +59,29 @@ class JoinForm extends React.Component {
   render () {
     const invalidCode = this.state.invalidCode
     return (
-      <div>
-        <input className={invalidCode ? 'red' : ''} value={this.state.code} onChange={this.handleCodeChange} placeholder="enter code here"/>
-        {invalidCode &&
-          <div style={{color: 'red'}}>Please enter a valid code<br /><br /></div>
-        }
-        <input
-          className='btn green lighten-2 hoverable'
-          type="submit"
-          onClick={() => {
-            db.joinTeam(this.state.code).then(teamId => {
-              Router.push(`/manageTeam?id=${teamId}`)
-            }).catch(e => this.handleError(e))
+      <div className='section'>
+      <div className="container">
+        <p className="title">Join Team</p>
+        <p className="subtitle">Enter the code your team manager has provided you.</p>
+        <p className="control">
+          <input className={invalidCode ? 'input is-danger' : 'input'} value={this.state.code} onChange={this.handleCodeChange} placeholder="enter code here"/>
+          {invalidCode &&
+            <p className='help is-danger'>Please enter a valid code<br /><br /></p>
           }
-          }
-        />
+        </p>
+        <p className="control">
+          <input
+            className='button is-primary'
+            type="submit"
+            onClick={() => {
+              db.joinTeam(this.state.code).then(teamId => {
+                Router.push(`/manageTeam?id=${teamId}`)
+              }).catch(e => this.handleError(e))
+            }
+            }
+          />
+        </p>
+      </div>
       </div>
     )
   }

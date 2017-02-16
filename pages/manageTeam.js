@@ -38,21 +38,47 @@ export default class extends React.Component {
     }).bind(this)
   }
   render () {
-    if (this.state.currentUser){
+    if (this.state.currentUser) {
       return (
         <Layout>
+            <div className="hero is-primary">
+              <div className="hero-body">
+                <div className="level">
+                <div className="level-item has-text-centered">
+                  <div>
+                    <p className="heading">team name</p>
+                    <p className='title'>{this.state.name}</p>
+                  </div>
+                </div>
+                <div className="level-item has-text-centered">
+                  <div>
+                    <p className="heading">team owner</p>
+                    <p className='title'>{this.state.owner}</p>
+                  </div>
+                </div>
+                <div className="level-item has-text-centered">
+                  <div>
+                    <p className="heading">join code</p>
+                    <p className='title'>{this.state.joinCode}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="has-text-centered">
+              <Link href={`/checkIn?id=${this.props.id}`}><a className='button is-primary is-medium'>CHECK IN</a></Link>
+            </p>
+          </div>
           <ManagementTools visible={this.state.currentUser.displayName === this.state.owner}/>
-          <h1 className='blue-text extra-bold'>{this.state.name}</h1>
-          <p>team owner: {this.state.owner}</p>
-          <p>member join code: {this.state.joinCode}</p>
-          <Link href={`/checkIn?id=${this.props.id}`}><a className='btn green lighten-2 hoverable'>CHECK IN</a></Link>
-          
-          <h3>Recent Checkins:</h3>
-          {Object.values(this.state.checkins).reverse().map(checkin => {
-            return (
-              <Checkin key={checkin.time} checkin={checkin} />
-            )
-          })}
+          <div className="section">
+            <div className="container">
+            <p className='title'>Recent Checkins:</p>
+              {Object.values(this.state.checkins).reverse().map(checkin => {
+                return (
+                  <Checkin key={checkin.time} checkin={checkin} />
+                )
+              })}
+            </div>
+          </div>
         </Layout>
       )
     } else {
@@ -68,8 +94,8 @@ export default class extends React.Component {
 const ManagementTools = ({visible}) => {
   if (visible) {
     return (
-      <div>
-        <h4>MANAGEMENT TOOOLS</h4>
+      <div className='section has-text-centered'>
+        <p className='heading'>MANAGEMENT TOOLS</p>
       </div>
     )
   } else {
@@ -80,17 +106,23 @@ const ManagementTools = ({visible}) => {
 
 const Checkin = ({checkin}) => {
   return (
-    <div className="row">
-      <div className="card z-depth-2 grey lighten-5">
+    <div className="columns">
+    <div className="column is-10 is-offset-1">
+      <div className="card">
+          <div className="card-header">
+            <div className="card-header-title">
+            Check In from {checkin.userName} <br/> {moment(checkin.time).format('ddd, MMM D')}
+            </div>
+          </div>
         <div className="card-content">
-          <div className="card-title">Check In from {checkin.userName} <br/> {moment(checkin.time).format('ddd, MMM D')}</div>
           <ul>
-            <li><span className="blue-text darken-2 extra-bold">Previous Day: </span>{checkin.q1}</li>
-            <li><span className="blue-text darken-2 extra-bold">Today: </span>{checkin.q2}</li>
-            <li><span className="blue-text darken-2 extra-bold">Blockers: </span>{checkin.q3}</li>
+            <li><span className="heading">Previous Day: </span>{checkin.q1}</li>
+            <li><span className="heading">Today: </span>{checkin.q2}</li>
+            <li><span className="heading">Blockers: </span>{checkin.q3}</li>
           </ul>
         </div>
       </div>
+    </div>
     </div>
   )
 }

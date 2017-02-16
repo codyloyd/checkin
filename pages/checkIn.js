@@ -35,7 +35,6 @@ export default class extends React.Component {
     if (this.state.currentUser) {
       return (
         <Layout>
-          <h1>Check in to <span className="blue-text extra-bold">{this.state.name}</span></h1>
           <CheckInForm teamId={this.props.id}/>
         </Layout>
       )
@@ -79,15 +78,26 @@ class CheckInForm extends React.Component {
   }
   render () {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <p className='blue-text text-darken-3'>What did you do on the last workday?</p>
-        <input onChange={this.handleChange} name='q1' type='text' placeholder='What did you do on the last workday?'/>
-        <p className='blue-text text-darken-3'>What are you doing today?</p>
-        <input onChange={this.handleChange} name='q2' type='text' placeholder='What are you doing today?'/>
-        <p className='blue-text text-darken-3'>Is there anything blocking you?</p>
-        <input onChange={this.handleChange} name='q3' type='text' placeholder='Is there anything blocking you?'/>
-        <button type='submit' className='btn green lighten-2 hoverable'>Submit</button>
-      </form>
+      <div className="section">
+        <div className="container">
+          <p className="title">Check In</p>
+          <form onSubmit={this.handleSubmit}>
+            <label className='label'>What did you do on the last workday?</label>
+            <p className="control">
+            <input className='input' onChange={this.handleChange} name='q1' type='text' placeholder='What did you do on the last workday?'/>
+            </p>
+            <p className='label'>What are you doing today?</p>
+            <p className="control">
+            <input className='input' onChange={this.handleChange} name='q2' type='text' placeholder='What are you doing today?'/>
+            </p>
+            <p className='label'>Is there anything blocking you?</p>
+            <p className="control">
+            <input className='input' onChange={this.handleChange} name='q3' type='text' placeholder='Is there anything blocking you?'/>
+            </p>
+            <button type='submit' className='button is-primary'>Submit</button>
+          </form>
+        </div>
+      </div>
     )
   }
 }

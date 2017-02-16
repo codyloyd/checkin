@@ -24,7 +24,7 @@ export default class TeamList extends React.Component {
   render () {
     if (this.state) {
       return (
-        <div>
+        <div className='columns is-multiline'>
           {Object.entries(this.state).map(team => {
             return (
             <ListItem
@@ -52,25 +52,21 @@ export default class TeamList extends React.Component {
 
 const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
   return (
-    <div className="row">
-      <div className="card z-depth-2 grey lighten-5">
-        <div className="card-content">
-          <div className="card-title">
-            <h5>{name}</h5>
+    <div className="column is-half-desktop is-half-tablet">
+      <div className='card'>
+          <div className="card-header">
+            <p className='card-header-title'>{name}</p>
           </div>
-          <p className="flow-text">
-          Team Owner: {owner}
-          </p>
-          <p className="flow-text">
-          Team Members: {members}
-          </p>
-          <p className="flow-text">
+        <div className="card-content">
+          <p className="content">
+          Team Owner: {owner}<br/>
+          Team Members: {members}<br/>
           Join Key: {joinCode}
           </p>
         </div>
-          <div className="card-action">
-            <Link href={`/manageTeam?id=${teamId}`}><a className='green-text text-lighten-2 extra-bold' href="#">GO TO TEAM</a></Link>
-            <Link href={`/checkIn?id=${teamId}`}><a className='green-text text-lighten-2 extra-bold' href="#">CHECK IN</a></Link>
+          <div className="card-footer">
+            <Link href={`/manageTeam?id=${teamId}`}><a className='card-footer-item' href="#">GO TO TEAM</a></Link>
+            <Link href={`/checkIn?id=${teamId}`}><a className='card-footer-item' href="#">CHECK IN</a></Link>
           </div>
       </div>
     </div>
