@@ -41,6 +41,7 @@ export default class extends React.Component {
     if (this.state.currentUser){
       return (
         <Layout>
+          <ManagementTools visible={this.state.currentUser.displayName === this.state.owner}/>
           <h1 className='blue-text extra-bold'>{this.state.name}</h1>
           <p>team owner: {this.state.owner}</p>
           <p>member join code: {this.state.joinCode}</p>
@@ -63,6 +64,19 @@ export default class extends React.Component {
     }
   }
 }
+
+const ManagementTools = ({visible}) => {
+  if (visible) {
+    return (
+      <div>
+        <h4>MANAGEMENT TOOOLS</h4>
+      </div>
+    )
+  } else {
+    return <div></div>
+  }
+}
+
 
 const Checkin = ({checkin}) => {
   return (
