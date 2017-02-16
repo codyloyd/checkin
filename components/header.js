@@ -36,7 +36,7 @@ const HeaderMenu = ({currentUser}) => {
   if (!currentUser) {
     return (
       <ul className="right hide-on-med-and-down">
-        <li><a className="btn green waves-effect waves-light" onClick={() => auth.signIn()}>sign in with <span className='extra-bold'>GitHub</span></a></li>
+        <li><a className="btn green lighten-2 hoverable" onClick={() => auth.signIn()}>sign in with <span className='extra-bold'>GitHub</span></a></li>
       </ul>
     )
   }
@@ -45,7 +45,7 @@ const HeaderMenu = ({currentUser}) => {
       <li><Link href="/"><a>Dashboard</a></Link></li>
       <li><Link href="/newTeam"><a>New Team</a></Link></li>
       <li><Link href="/joinTeam"><a>Join Team</a></Link></li>
-      <li><a className="btn green" onClick={() => auth.signOut()}>signout</a></li>
+      <li><a className="btn green lighten-2 hoverable" onClick={() => auth.signOut()}>signout</a></li>
     </ul>
   )
 }

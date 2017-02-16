@@ -44,7 +44,7 @@ export default class extends React.Component {
           <h1 className='blue-text extra-bold'>{this.state.name}</h1>
           <p>team owner: {this.state.owner}</p>
           <p>member join code: {this.state.joinCode}</p>
-          <Link href={`/checkIn?id=${this.props.id}`}><a className='btn green waves-effect waves-light'>CHECK IN</a></Link>
+          <Link href={`/checkIn?id=${this.props.id}`}><a className='btn green lighten-2 hoverable'>CHECK IN</a></Link>
           
           <h3>Recent Checkins:</h3>
           {Object.values(this.state.checkins).reverse().map(checkin => {

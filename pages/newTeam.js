@@ -56,7 +56,7 @@ class TeamForm extends React.Component {
         <input id='name' value={this.state.name} onChange={this.handleNameChange} placeholder='Team Name'/>
       </div>
         <input
-          className='btn green'
+          className='btn green lighten-2 hoverable'
           type="submit"
           onClick={() =>
             db.createTeam(this.state.name).then(teamId =>

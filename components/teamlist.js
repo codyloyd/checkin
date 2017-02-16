@@ -53,10 +53,10 @@ export default class TeamList extends React.Component {
 const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
   return (
     <div className="row">
-      <div className="card z-depth-2 grey lighten-5 hoverable">
+      <div className="card z-depth-2 grey lighten-5">
         <div className="card-content">
           <div className="card-title">
-            {name}
+            <h5>{name}</h5>
           </div>
           <p className="flow-text">
           Team Owner: {owner}
@@ -69,8 +69,8 @@ const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
           </p>
         </div>
           <div className="card-action">
-            <Link href={`/manageTeam?id=${teamId}`}><a href="#">GO TO TEAM</a></Link>
-            <Link href={`/checkIn?id=${teamId}`}><a href="#">CHECK IN</a></Link>
+            <Link href={`/manageTeam?id=${teamId}`}><a className='green-text text-lighten-2 extra-bold' href="#">GO TO TEAM</a></Link>
+            <Link href={`/checkIn?id=${teamId}`}><a className='green-text text-lighten-2 extra-bold' href="#">CHECK IN</a></Link>
           </div>
       </div>
     </div>

@@ -55,6 +55,7 @@ class JoinForm extends React.Component {
       <div>
         <input value={this.state.code} onChange={this.handleCodeChange} placeholder="enter code here"/>
         <input
+          className='btn green lighten-2 hoverable'
           type="submit"
           onClick={() => {
             db.joinTeam(this.state.code).then(teamId => {
