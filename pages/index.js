@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import TeamList from '../components/teamlist'
 import SignInMessage from '../components/signInMessage'
 
-const Title = ({title}) => <h1>{title}</h1>
+const Title = ({title}) => <h1 className='title'>{title}</h1>
 
 export default class extends React.Component {
   constructor () {
@@ -41,8 +41,16 @@ export default class extends React.Component {
 const Dashboard = props => {
   return (
   <div>
-    <Title title="Dashboard" />
-    <TeamList />
+    <div className="hero is-primary">
+      <div className="hero-body">
+      <div className="container is-fluid">
+        <Title title="Dashboard" />
+      </div>
+      </div>
+    </div>
+    <div className="section">
+      <TeamList />
+    </div>
   </div>
   )
 }

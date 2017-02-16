@@ -26,7 +26,6 @@ export default class extends React.Component {
     if (this.state.currentUser) {
       return (
         <Layout title="New Team">
-          <h1>New Team</h1>
           <TeamForm />
         </Layout>
       )
@@ -51,12 +50,15 @@ class TeamForm extends React.Component {
   }
   render () {
     return (
-      <div>
-      <div className="input-field">
-        <input id='name' value={this.state.name} onChange={this.handleNameChange} placeholder='Team Name'/>
-      </div>
+      <div className='section'>
+      <div className="container">
+      <p className="title">New Team</p>
+      <p className="control">
+        <input id='name' className='input' value={this.state.name} onChange={this.handleNameChange} placeholder='Team Name'/>
+      </p>
+      <p className="control">
         <input
-          className='btn green lighten-2 hoverable'
+          className='button is-primary'
           type="submit"
           onClick={() =>
             db.createTeam(this.state.name).then(teamId =>
@@ -64,6 +66,8 @@ class TeamForm extends React.Component {
             )
           }
         />
+      </p>
+      </div>
       </div>
     )
   }

@@ -24,11 +24,20 @@ export default class extends React.Component {
   }
   render () {
     return (
-      <div className="navbar-fixed">
-        <nav>
-          <div className="nav-wrapper blue">
-            <div className="brand-logo"><i className="large material-icons">done</i>CheckIt</div>
-              <HeaderMenu menuClick={() => this.toggleMobileMenu()} currentUser={this.state.currentUser}/>
+      <div>
+        <nav className='nav has-shadow'>
+          <div className="container">
+            <div className="nav-left">
+              <div className="nav-item">
+                <p className='title'>CheckIt</p>
+              </div>
+            </div>
+            <div className="nav-right">
+              <div className="nav-item">
+                <a href="" className="is-primary button is-hidden-desktop is-hidden-tablet">menu</a>
+              </div>
+            </div>
+            <HeaderMenu menuClick={() => this.toggleMobileMenu()} currentUser={this.state.currentUser}/>
           </div>
         </nav>
         <MobileMenu visibility={this.state.mobileMenuVisible} currentUser={this.state.currentUser}/>
@@ -40,23 +49,21 @@ export default class extends React.Component {
 const HeaderMenu = ({currentUser, menuClick}) => {
   if (!currentUser) {
     return (
-      <div>
-      <a onClick={menuClick} className=" left dropdown-button hide-on-large-only">Menu<i className="material-icons left">arrow_drop_down</i></a>
-        <ul className="right hide-on-med-and-down">
-          <li><a className="btn green lighten-2 hoverable" onClick={() => auth.signIn()}>sign in with <span className='extra-bold'>GitHub</span></a></li>
-        </ul>
-      </div>
+    <div className='nav-right'>
+      <span className="nav-item">
+        <a className="button is-primary" onClick={() => auth.signIn()}>sign in</a>
+      </span>
+    </div>
     )
   }
   return (
-    <div>
-      <a onClick={menuClick} className=" left dropdown-button hide-on-large-only">Menu<i className="material-icons left">arrow_drop_down</i></a>
-      <ul className="right hide-on-med-and-down">
-        <li><Link href="/"><a>Dashboard</a></Link></li>
-        <li><Link href="/newTeam"><a>New Team</a></Link></li>
-        <li><Link href="/joinTeam"><a>Join Team</a></Link></li>
-        <li><a className="btn green lighten-2 hoverable" onClick={() => auth.signOut()}>signout</a></li>
-      </ul>
+    <div className='nav-right nav-menu'>
+      <Link href="/"><a className='nav-item'>Dashboard</a></Link>
+      <Link href="/newTeam"><a className='nav-item'>New Team</a></Link>
+      <Link href="/joinTeam"><a className='nav-item'>Join Team</a></Link>
+      <span className="nav-item">
+        <a className="button is-primary" onClick={() => auth.signOut()}>signout</a>
+      </span>
     </div>
   )
 }
@@ -74,7 +81,7 @@ const MobileMenu = ({visibility, currentUser}) => {
             width: 100%;
             top: 56px;
             position: fixed;
-            z-index: -1;
+            z-index: 1;
           }
           .mobile-menu > .menu-contents > a {
             text-align: center;
