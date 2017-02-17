@@ -34,11 +34,10 @@ export default class extends React.Component {
             </div>
             <div className="nav-right">
               <div className="nav-item">
-                <a href="" onClick={e => {
-                  e.preventDefault()
-                  this.toggleMobileMenu()
-                }}
-                  className="is-primary button is-hidden-desktop is-hidden-tablet">menu</a>
+                <MenuButton currentUser={this.state.currentUser}
+                  menuClick={e => {
+                    this.toggleMobileMenu()
+                }} />
               </div>
             </div>
             <HeaderMenu currentUser={this.state.currentUser}/>
@@ -48,6 +47,20 @@ export default class extends React.Component {
         <MobileMenu visibility={this.state.mobileMenuVisible} currentUser={this.state.currentUser}/>
       </div>
     )
+  }
+}
+
+const MenuButton = ({currentUser, menuClick}) => {
+  if (currentUser) {
+    return (
+      <a href="" onClick={e => {
+        e.preventDefault()
+        menuClick()
+      }}
+        className="is-primary button is-hidden-desktop is-hidden-tablet">menu</a>
+    )
+  } else {
+    return <div></div>
   }
 }
 
@@ -102,7 +115,7 @@ const MobileMenuContents = ({currentUser}) => {
   } else {
     return (
       <div className='level'>
-        <a className="level-item" onClick={() => auth.signIn()}>Sign In</a>
+        <a className="subtitle level-item" onClick={() => auth.signIn()}>Sign In</a>
       </div>
     )
   }
