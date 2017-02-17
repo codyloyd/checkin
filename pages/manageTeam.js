@@ -16,13 +16,15 @@ export default class extends React.Component {
     this.state = {
       checkins: {},
       name: '',
-      owner: ''
+      owner: '',
+      members: []
     }
   }
   componentDidMount () {
     db.fetchTeamWithId(this.props.id).then(data => {
-      const {name, owner, joinCode} = data.val()
-      this.setState({name, owner, joinCode})
+      const {name, owner, joinCode, members} = data.val()
+      this.setState({name, owner, joinCode, members})
+      console.log(this.state)
     })
     db.getRecentCheckins(this.props.id).then(data => {
       if (data.val()) {
@@ -71,12 +73,20 @@ export default class extends React.Component {
           <ManagementTools visible={this.state.currentUser.displayName === this.state.owner}/>
           <div className="section">
             <div className="container">
-            <p className='title'>Recent Checkins:</p>
-              {Object.values(this.state.checkins).reverse().map(checkin => {
-                return (
-                  <Checkin key={checkin.time} checkin={checkin} />
-                )
-              })}
+              <div className="columns">
+                <div className="column is-10">
+                  <p className='title has-text-centered'>Recent Checkins:</p>
+                  {Object.values(this.state.checkins).reverse().map(checkin => {
+                    return (
+                      <Checkin key={checkin.time} checkin={checkin} />
+                    )
+                  })}
+                </div>
+                <div className="column is-2">
+                  <p className="title has-text-centered">Members:</p>
+                  {this.state.members.map(member => <Member member={member}/>)}
+                </div>
+              </div>
             </div>
           </div>
         </Layout>
@@ -90,6 +100,8 @@ export default class extends React.Component {
     }
   }
 }
+
+const Member = ({member}) => <div className='has-text-centered subtitle'>{member}</div>
 
 const ManagementTools = ({visible}) => {
   if (visible) {
