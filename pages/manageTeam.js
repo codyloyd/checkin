@@ -1,11 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import moment from 'moment'
 import firebase from 'firebase'
 
 import SignInMessage from '../components/signInMessage'
 import Layout from '../components/layout'
-import {db} from '../lib/firebase'
+import {db, auth} from '../lib/firebase'
 
 export default class extends React.Component {
   static async getInitialProps ({ req, query: { id } }) {
@@ -24,7 +25,6 @@ export default class extends React.Component {
     db.fetchTeamWithId(this.props.id).then(data => {
       const {name, owner, joinCode, members} = data.val()
       this.setState({name, owner, joinCode, members})
-      console.log(this.state)
     })
     db.getRecentCheckins(this.props.id).then(data => {
       if (data.val()) {
@@ -82,7 +82,7 @@ export default class extends React.Component {
                     </p>
                   <div className="section is-hidden-mobile">
                     <p className="title has-text-centered">Members:</p>
-                    {this.state.members.map(member => <Member member={member}/>)}
+                    {this.state.members.map(member => <Member key={member} member={member}/>)}
                   </div>
                 </div>
                 <div className="column is-9-desktop is-9-tablet">
@@ -95,6 +95,13 @@ export default class extends React.Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="section has-text-centered">
+            <p className='button is-danger is-inverted' onClick={e => {
+              db.removeUserFromTeam({userId: auth.currentUser().uid, teamId: this.props.id})
+              db.removeTeamFromUser({userId: auth.currentUser().uid, teamId: this.props.id}).then(Router.push('/'))
+            }
+            }>Leave Team 😞</p>
           </div>
         </Layout>
       )
@@ -110,23 +117,41 @@ export default class extends React.Component {
 
 const Member = ({member}) => <div className='has-text-centered subtitle'>{member}</div>
 
-const ManagementTools = ({visible, teamId}) => {
-  if (visible) {
-    return (
-      <div className='section has-text-centered'>
-        <p className='heading'>MANAGEMENT TOOLS</p>
-        <p className='button' onClick={e => {
-          db.deleteTeam(teamId)
-        }
-        }>DELETE TEAM</p>
-        <p className='button' onClick={e => {
-          db.removeUserFromTeam({displayName: 'Cody Loyd', teamId})
-        }
-        }>Leave Team</p>
-      </div>
-    )
-  } else {
-    return <div></div>
+class ManagementTools extends React.Component {
+  constructor () {
+    super()
+    this.state = {input: ''}
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange (event) {
+    this.setState({input: event.target.value})
+  }
+  render () {
+    if (this.props.visible) {
+      return (
+        <div className='section has-text-centered'>
+          <p className='heading'>MANAGEMENT TOOLS</p>
+          <div className="level">
+            <div className="level-item">
+              <input type="text" className='input' onChange={this.handleChange} placeholder='username to remove'/>
+              <p className='button' onClick={e => {
+                db.removeUserFromTeam({displayName: 'odin-bot', teamId: this.props.teamId})
+                db.removeTeamFromUser({displayName: 'odin-bot', teamId: this.props.teamId})
+              }
+              }>Remove User</p>
+            </div>
+            <div className="level-item">
+              <p className='button' onClick={e => {
+                db.deleteTeam(this.props.teamId).then(Router.push('/'))
+              }
+              }>DELETE TEAM</p>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return <div></div>
+    }
   }
 }
 
