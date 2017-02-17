@@ -40,7 +40,7 @@ export default class extends React.Component {
           </div>
         </nav>
 
-        <MobileMenu visibility={this.state.mobileMenuVisible} currentUser={this.state.currentUser}/>
+        <MobileMenu visibility={this.state.mobileMenuVisible} toggleMenu={this.toggleMobileMenu} currentUser={this.state.currentUser}/>
       </div>
     )
   }
@@ -86,12 +86,12 @@ const HeaderMenu = ({currentUser, menuClick}) => {
   )
 }
 
-const MobileMenu = ({visibility, currentUser}) => {
+const MobileMenu = ({visibility, currentUser, toggleMenu}) => {
   if (visibility) {
     return (
       <div className="hero is-primary">
           <div className="hero-body">
-            <MobileMenuContents currentUser={currentUser} />
+            <MobileMenuContents currentUser={currentUser} toggleMenu={toggleMenu}/>
           </div>
         </div>
     )
@@ -102,14 +102,17 @@ const MobileMenu = ({visibility, currentUser}) => {
   }
 }
 
-const MobileMenuContents = ({currentUser}) => {
+const MobileMenuContents = ({currentUser, toggleMenu}) => {
   if (currentUser) {
     return (
       <div className='level'>
         <Link href="/"><a className='title level-item'>Dashboard</a></Link>
         <Link href="/newTeam"><a className='title level-item'>New Team</a></Link>
         <Link href="/joinTeam"><a className='title level-item'>Join Team</a></Link>
-        <a className='title level-item' onClick={() => auth.signOut()}>Sign Out</a>
+        <a className='title level-item' onClick={() => {
+          auth.signOut()
+          toggleMenu()
+        }}>Sign Out</a>
       </div>
     )
   } else {

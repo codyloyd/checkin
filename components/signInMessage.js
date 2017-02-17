@@ -18,12 +18,12 @@ export default (props) => {
           <div className="content">
           <p>CheckIt was created by Cody Loyd and Thoragio.  The original inspiration came from a project suggested by Eric Elliott <a href="https://github.com/learn-javascript-courses/checkin">here.</a></p>
           <p>The basic concept was to use React to create an app where users could create and join teams, and then do daily 'CheckIns' where they answer the 3 questions you would normally hear in a SCRUM stand-up meeting:
-            <ul>
-              <li>What did you do on the last workday?</li>
-              <li>What are you doing today?</li>
-              <li>Is there anything blocking you?</li>
-            </ul>
           </p>
+          <ul>
+            <li>What did you do on the last workday?</li>
+            <li>What are you doing today?</li>
+            <li>Is there anything blocking you?</li>
+          </ul>
           <p>The bulk of the work was done in February of 2017.  You can find the github repo <a href="https://github.com/codyloyd/checkin">here</a></p>
           </div>
         </div>
