@@ -35,7 +35,7 @@ export default class extends React.Component {
                 <MenuButton currentUser={this.state.currentUser}
                   menuClick={e => {
                     this.toggleMobileMenu()
-                }} />
+                  }} />
             <HeaderMenu currentUser={this.state.currentUser}/>
           </div>
         </nav>

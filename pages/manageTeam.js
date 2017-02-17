@@ -155,7 +155,6 @@ class ManagementTools extends React.Component {
   }
 }
 
-
 const Checkin = ({checkin}) => {
   return (
     <div className="columns">
