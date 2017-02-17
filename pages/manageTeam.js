@@ -69,7 +69,10 @@ export default class extends React.Component {
             </div>
 
           </div>
-          <ManagementTools visible={this.state.currentUser.displayName === this.state.owner}/>
+          <ManagementTools
+            visible={this.state.currentUser.displayName === this.state.owner}
+            teamId = {this.props.id}
+          />
           <div className="section">
             <div className="container">
               <div className="columns">
@@ -107,11 +110,19 @@ export default class extends React.Component {
 
 const Member = ({member}) => <div className='has-text-centered subtitle'>{member}</div>
 
-const ManagementTools = ({visible}) => {
+const ManagementTools = ({visible, teamId}) => {
   if (visible) {
     return (
       <div className='section has-text-centered'>
         <p className='heading'>MANAGEMENT TOOLS</p>
+        <p className='button' onClick={e => {
+          db.deleteTeam(teamId)
+        }
+        }>DELETE TEAM</p>
+        <p className='button' onClick={e => {
+          db.removeUserFromTeam({displayName: 'Cody Loyd', teamId})
+        }
+        }>Leave Team</p>
       </div>
     )
   } else {
