@@ -4,7 +4,7 @@ import Header from './header'
 
 export default({
   children,
-  title = '✔️️CheckIt!'
+  title = 'CheckIt!'
 }) => (
   <div>
     <Head>
@@ -13,6 +13,7 @@ export default({
       <meta name='viewport' content='initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=0'/>
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <link rel="stylesheet" href="../static/bulma.css"/>
+      <link rel="icon" href="../static/favicon.ico"/>
       <style>{`
       `}</style>
     </Head>
