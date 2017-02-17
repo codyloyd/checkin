@@ -73,7 +73,7 @@ export default class extends React.Component {
           <div className="section">
             <div className="container">
               <div className="columns">
-                <div className="column is-2-desktop is-3-tablet">
+                <div className="column is-3-desktop is-3-tablet">
                     <p className="has-text-centered">
                       <Link href={`/checkIn?id=${this.props.id}`}><a className='button is-primary is-medium'>CHECK IN</a></Link>
                     </p>
@@ -82,7 +82,7 @@ export default class extends React.Component {
                     {this.state.members.map(member => <Member member={member}/>)}
                   </div>
                 </div>
-                <div className="column is-10-desktop is-9-tablet">
+                <div className="column is-9-desktop is-9-tablet">
                   <p className='title has-text-centered'>Recent Checkins:</p>
                   {Object.values(this.state.checkins).reverse().map(checkin => {
                     return (
