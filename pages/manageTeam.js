@@ -45,7 +45,8 @@ export default class extends React.Component {
         <Layout>
             <div className="hero is-primary">
               <div className="hero-body">
-                <div className="level">
+                <div className="title has-text-centered is-hidden-tablet">{this.state.name}</div>
+                <div className="level is-hidden-mobile">
                 <div className="level-item has-text-centered">
                   <div>
                     <p className="heading">team name</p>
@@ -66,25 +67,28 @@ export default class extends React.Component {
                 </div>
               </div>
             </div>
-            <p className="has-text-centered">
-              <Link href={`/checkIn?id=${this.props.id}`}><a className='button is-primary is-medium'>CHECK IN</a></Link>
-            </p>
+
           </div>
           <ManagementTools visible={this.state.currentUser.displayName === this.state.owner}/>
           <div className="section">
             <div className="container">
               <div className="columns">
-                <div className="column is-10">
+                <div className="column is-2-desktop is-3-tablet">
+                    <p className="has-text-centered">
+                      <Link href={`/checkIn?id=${this.props.id}`}><a className='button is-primary is-medium'>CHECK IN</a></Link>
+                    </p>
+                  <div className="section is-hidden-mobile">
+                    <p className="title has-text-centered">Members:</p>
+                    {this.state.members.map(member => <Member member={member}/>)}
+                  </div>
+                </div>
+                <div className="column is-10-desktop is-9-tablet">
                   <p className='title has-text-centered'>Recent Checkins:</p>
                   {Object.values(this.state.checkins).reverse().map(checkin => {
                     return (
                       <Checkin key={checkin.time} checkin={checkin} />
                     )
                   })}
-                </div>
-                <div className="column is-2">
-                  <p className="title has-text-centered">Members:</p>
-                  {this.state.members.map(member => <Member member={member}/>)}
                 </div>
               </div>
             </div>
