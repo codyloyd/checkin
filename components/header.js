@@ -32,14 +32,10 @@ export default class extends React.Component {
                 <p className='title'>CheckIt</p>
               </div>
             </div>
-            <div className="nav-right">
-              <div className="nav-item">
                 <MenuButton currentUser={this.state.currentUser}
                   menuClick={e => {
                     this.toggleMobileMenu()
                 }} />
-              </div>
-            </div>
             <HeaderMenu currentUser={this.state.currentUser}/>
           </div>
         </nav>
@@ -53,11 +49,15 @@ export default class extends React.Component {
 const MenuButton = ({currentUser, menuClick}) => {
   if (currentUser) {
     return (
+      <div className="nav-right">
+      <div className="nav-item">
       <a href="" onClick={e => {
         e.preventDefault()
         menuClick()
       }}
         className="is-primary button is-hidden-desktop is-hidden-tablet">menu</a>
+      </div>
+      </div>
     )
   } else {
     return <div></div>
@@ -69,7 +69,7 @@ const HeaderMenu = ({currentUser, menuClick}) => {
     return (
     <div className='nav-right'>
       <span className="nav-item">
-        <a className="button is-primary" onClick={() => auth.signIn()}>sign in</a>
+        <a className="button is-primary" onClick={() => auth.signIn()}>sign in with GitHub</a>
       </span>
     </div>
     )
