@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "heroku-nextjs-build",
     "test": "babel-node ./spec/test.js | faucet"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mars/heroku-nextjs-build": "^1.1.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.0",
     "babel-polyfill": "^6.23.0",
@@ -32,5 +34,11 @@
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-standard": "^2.0.1",
     "isomorphic-fetch": "^2.2.1"
-  }
+  },
+"engines": {
+    "node": "6.9.x"
+  },
+  "cacheDirectories": [
+    "nextjs/node_modules"
+  ]
 }
