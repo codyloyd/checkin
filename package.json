@@ -4,9 +4,13 @@
   "description": "Remote scrum checkin app",
   "main": "./pages/index.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev-js": "next",
+    "build-js": "next build",
+    "build-css": "node-sass static/ -o static/",
+    "watch-css": "npm run build-css && node-sass static/ -o static/ --watch --recursive",
     "start": "next start -p $PORT",
+    "build": "npm-run-all -p build-css build-js",
+    "dev": "npm-run-all -p watch-css dev-js",
     "heroku-postbuild": "heroku-nextjs-build",
     "test": "babel-node ./spec/test.js | faucet"
   },
@@ -20,22 +24,25 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
+    "bulma": "^0.4.0",
     "firebase": "^3.6.9",
     "moment": "^2.17.1",
     "next": "^2.0.0-beta.26",
+    "node-sass": "^4.5.2",
+    "npm-run-all": "^4.0.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "tape": "^4.6.3",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-standard": "^2.0.1",
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "tape": "^4.6.3"
   },
-"engines": {
+  "engines": {
     "node": "6.9.x"
   },
   "cacheDirectories": [

@@ -14,5 +14,5 @@ coverage
 .DS_Store
 .env
 npm-debug.log
-bulma
+style.css
 .sass-cache
