@@ -231,9 +231,7 @@ const Checkin = ({checkin}) => {
           <div className="card-header">
             <div className="card-header-title">
               Check In from
-              {' '}
-              {checkin.userName}
-              {' '}
+              {' ' + checkin.userName}
               <br />
               {' '}
               {moment(checkin.time).format('ddd, MMM D')}
