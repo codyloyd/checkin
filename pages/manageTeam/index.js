@@ -1,14 +1,20 @@
 import React from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
-import moment from 'moment'
-import firebase from 'firebase'
+// import moment from 'moment'
+import withRedux from 'next-redux-wrapper'
+import {db, auth} from '../../lib/firebase'
+
+import configureApp from '../../lib/configureApp'
 
 import SignInMessage from '../../components/signInMessage'
 import Layout from '../../components/layout'
-import {db, auth} from '../../lib/firebase'
+import TeamDetails from './TeamDetails'
+import ManagementTools from './ManagementTools'
+import Member from './Member'
+import Checkin from './Checkin'
 
-export default class extends React.Component {
+class ManageTeam extends React.Component {
   static async getInitialProps ({req, query: {id}}) {
     return {id}
   }
@@ -34,24 +40,15 @@ export default class extends React.Component {
         }
       })
       .catch(e => console.log(e))
-    firebase
-      .auth()
-      .onAuthStateChanged(user => {
-        if (user) {
-          this.setState({currentUser: user})
-        } else {
-          this.setState({currentUser: null})
-        }
-      })
-      .bind(this)
   }
   render () {
-    if (this.state.currentUser) {
+    console.log(this.props)
+    if (this.props.currentUser) {
       return (
         <Layout>
           <TeamDetails {...this.state} />
           <ManagementTools
-            visible={this.state.currentUser.displayName === this.state.owner}
+            visible={this.state.currentUser === this.state.owner}
             teamId={this.props.id}
           />
           <div className="section">
@@ -116,142 +113,6 @@ export default class extends React.Component {
   }
 }
 
-const TeamDetails = ({name, owner, joinCode}) => {
-  return (
-    <div className="hero is-primary">
-      <div className="hero-body">
-        <div className="title has-text-centered is-hidden-tablet">
-          {name}
-        </div>
-        <div className="level is-hidden-mobile">
-          <div className="level-item has-text-centered">
-            <div>
-              <p className="heading">team name</p>
-              <p className="title">{name}</p>
-            </div>
-          </div>
-          <div className="level-item has-text-centered">
-            <div>
-              <p className="heading">team owner</p>
-              <p className="title">{owner}</p>
-            </div>
-          </div>
-          <div className="level-item has-text-centered">
-            <div>
-              <p className="heading">join code</p>
-              <p className="title">{joinCode}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-};
-const Member = ({member, lastCheckin}) => {
-  const now = Date.now()
-  return (
-    <div className="has-text-centered subtitle">
-      {member} <br />
-      {lastCheckin
-        ? <div className="font-size-small">
-            <span className="heading">
-              Last Checkin
-            </span>
-            <span
-              className={
-                now - lastCheckin.time > 24 * 60 * 60 * 1000 ? 'is-danger' : ''
-              }
-            >
-              {moment(lastCheckin.time).format('D/M/YY - h:mm a')}
-            </span>
-          </div>
-        : ''}
-    </div>
-  )
-};
+ManageTeam = withRedux(configureApp, state => state)(ManageTeam)
 
-class ManagementTools extends React.Component {
-  constructor () {
-    super()
-    this.state = {input: ''}
-    this.handleChange = this.handleChange.bind(this)
-  }
-  handleChange (event) {
-    this.setState({input: event.target.value})
-  }
-  render () {
-    if (this.props.visible) {
-      return (
-        <div className="section has-text-centered">
-          <p className="heading">MANAGEMENT TOOLS</p>
-          <div className="level">
-            <div className="level-item">
-              <input
-                type="text"
-                className="input"
-                onChange={this.handleChange}
-                placeholder="username to remove"
-              />
-              <p
-                className="button"
-                onClick={e => {
-                  db.removeUserFromTeam({
-                    displayName: this.state.input,
-                    teamId: this.props.teamId
-                  })
-                  db.removeTeamFromUser({
-                    displayName: this.state.input,
-                    teamId: this.props.teamId
-                  })
-                }}
-              >
-                Remove User
-              </p>
-            </div>
-            <div className="level-item">
-              <p
-                className="button"
-                onClick={e => {
-                  db.deleteTeam(this.props.teamId).then(Router.push('/'))
-                }}
-              >
-                DELETE TEAM
-              </p>
-            </div>
-          </div>
-        </div>
-      )
-    } else {
-      return <div />
-    }
-  }
-}
-
-const Checkin = ({checkin}) => {
-  return (
-    <div className="columns">
-      <div className="column is-10 is-offset-1">
-        <div className="card">
-          <div className="card-header">
-            <div className="card-header-title">
-              Check In from
-              {' ' + checkin.userName}
-              <br />
-              {' '}
-              {moment(checkin.time).format('ddd, MMM D')}
-            </div>
-          </div>
-          <div className="card-content">
-            <ul>
-              <li>
-                <span className="heading">Previous Day: </span>{checkin.q1}
-              </li>
-              <li><span className="heading">Today: </span>{checkin.q2}</li>
-              <li><span className="heading">Blockers: </span>{checkin.q3}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-};
+export default ManageTeam
