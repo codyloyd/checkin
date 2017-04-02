@@ -20,7 +20,6 @@ class ManageTeam extends React.Component {
   static async getInitialProps ({req, query: {id}}) {
     return {id}
   }
-
   componentDidMount () {
     this.props.fetchTeam(this.props.id)
     this.props.fetchCheckins(this.props.id)
