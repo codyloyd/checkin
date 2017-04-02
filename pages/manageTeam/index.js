@@ -6,6 +6,8 @@ import withRedux from 'next-redux-wrapper'
 import {db, auth} from '../../lib/firebase'
 
 import configureApp from '../../lib/configureApp'
+import {fetchTeam} from '../../reducers/teams'
+import {fetchCheckins} from '../../reducers/checkins'
 
 import SignInMessage from '../../components/signInMessage'
 import Layout from '../../components/layout'
@@ -18,37 +20,19 @@ class ManageTeam extends React.Component {
   static async getInitialProps ({req, query: {id}}) {
     return {id}
   }
-  constructor () {
-    super()
-    this.state = {
-      checkins: {},
-      name: '',
-      owner: '',
-      members: []
-    }
-  }
+
   componentDidMount () {
-    db.fetchTeamWithId(this.props.id).then(data => {
-      const {name, owner, joinCode, members} = data.val()
-      this.setState({name, owner, joinCode, members})
-    })
-    db
-      .getRecentCheckins(this.props.id)
-      .then(data => {
-        if (data.val()) {
-          this.setState({checkins: data.val()})
-        }
-      })
-      .catch(e => console.log(e))
+    this.props.fetchTeam(this.props.id)
+    this.props.fetchCheckins(this.props.id)
   }
   render () {
-    console.log(this.props)
-    if (this.props.currentUser) {
+    const {currentUser, team, checkins} = this.props
+    if (currentUser) {
       return (
         <Layout>
-          <TeamDetails {...this.state} />
+          <TeamDetails {...team} />
           <ManagementTools
-            visible={this.state.currentUser === this.state.owner}
+            visible={currentUser === team.owner}
             teamId={this.props.id}
           />
           <div className="section">
@@ -62,11 +46,11 @@ class ManageTeam extends React.Component {
                   </p>
                   <div className="section is-hidden-mobile">
                     <p className="title has-text-centered">Members:</p>
-                    {this.state.members.map(member => (
+                    {team.members.map(member => (
                       <Member
                         key={member}
                         member={member}
-                        lastCheckin={Object.values(this.state.checkins)
+                        lastCheckin={Object.values(checkins)
                           .sort((a, b) => a.time < b.time)
                           .find(c => c.userName === member)}
                       />
@@ -75,7 +59,7 @@ class ManageTeam extends React.Component {
                 </div>
                 <div className="column is-9-desktop is-9-tablet">
                   <p className="title has-text-centered">Recent Checkins:</p>
-                  {Object.values(this.state.checkins).reverse().map(checkin => {
+                  {Object.values(checkins).reverse().map(checkin => {
                     return <Checkin key={checkin.time} checkin={checkin} />
                   })}
                 </div>
@@ -112,7 +96,19 @@ class ManageTeam extends React.Component {
     }
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  const {id} = ownProps
+  const team = state.teams.byId[id]
+  return {
+    currentUser: state.currentUser,
+    team: team || {},
+    checkins: state.checkins.byId
+  }
+};
 
-ManageTeam = withRedux(configureApp, state => state)(ManageTeam)
+ManageTeam = withRedux(configureApp, state => mapStateToProps, {
+  fetchTeam,
+  fetchCheckins
+})(ManageTeam)
 
 export default ManageTeam
