@@ -4,9 +4,9 @@ import Router from 'next/router'
 import moment from 'moment'
 import firebase from 'firebase'
 
-import SignInMessage from '../components/signInMessage'
-import Layout from '../components/layout'
-import {db, auth} from '../lib/firebase'
+import SignInMessage from '../../components/signInMessage'
+import Layout from '../../components/layout'
+import {db, auth} from '../../lib/firebase'
 
 export default class extends React.Component {
   static async getInitialProps ({req, query: {id}}) {
@@ -49,34 +49,7 @@ export default class extends React.Component {
     if (this.state.currentUser) {
       return (
         <Layout>
-          <div className="hero is-primary">
-            <div className="hero-body">
-              <div className="title has-text-centered is-hidden-tablet">
-                {this.state.name}
-              </div>
-              <div className="level is-hidden-mobile">
-                <div className="level-item has-text-centered">
-                  <div>
-                    <p className="heading">team name</p>
-                    <p className="title">{this.state.name}</p>
-                  </div>
-                </div>
-                <div className="level-item has-text-centered">
-                  <div>
-                    <p className="heading">team owner</p>
-                    <p className="title">{this.state.owner}</p>
-                  </div>
-                </div>
-                <div className="level-item has-text-centered">
-                  <div>
-                    <p className="heading">join code</p>
-                    <p className="title">{this.state.joinCode}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          <TeamDetails {...this.state} />
           <ManagementTools
             visible={this.state.currentUser.displayName === this.state.owner}
             teamId={this.props.id}
@@ -143,6 +116,37 @@ export default class extends React.Component {
   }
 }
 
+const TeamDetails = ({name, owner, joinCode}) => {
+  return (
+    <div className="hero is-primary">
+      <div className="hero-body">
+        <div className="title has-text-centered is-hidden-tablet">
+          {name}
+        </div>
+        <div className="level is-hidden-mobile">
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="heading">team name</p>
+              <p className="title">{name}</p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="heading">team owner</p>
+              <p className="title">{owner}</p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="heading">join code</p>
+              <p className="title">{joinCode}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+};
 const Member = ({member, lastCheckin}) => {
   const now = Date.now()
   return (
@@ -164,7 +168,7 @@ const Member = ({member, lastCheckin}) => {
         : ''}
     </div>
   )
-}
+};
 
 class ManagementTools extends React.Component {
   constructor () {
@@ -250,4 +254,4 @@ const Checkin = ({checkin}) => {
       </div>
     </div>
   )
-}
+};
