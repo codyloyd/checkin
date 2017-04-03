@@ -7,11 +7,11 @@ const FETCH_CHECKINS_SUCCESS = 'FETCH_CHECKINS_SUCCESS'
 const FETCH_CHECKINS_FAIL = 'FETCH_CHECKINS_FAIL'
 
 // Action Creators
-const fetchCheckinsSuccess = response => ({
+export const fetchCheckinsSuccess = response => ({
   type: FETCH_CHECKINS_SUCCESS,
   response
 })
-const fetchCheckinsFail = error => ({
+export const fetchCheckinsFail = error => ({
   type: FETCH_CHECKINS_FAIL,
   error
 })

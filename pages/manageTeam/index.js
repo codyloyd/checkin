@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
-// import moment from 'moment'
 import withRedux from 'next-redux-wrapper'
-import {db, auth} from '../../lib/firebase'
+import firebase from 'firebase'
 
+import {db, auth} from '../../lib/firebase'
 import configureApp from '../../lib/configureApp'
 import {fetchTeam} from '../../reducers/teams'
 import {fetchCheckins} from '../../reducers/checkins'
@@ -22,8 +22,13 @@ class ManageTeam extends React.Component {
     return {id}
   }
   componentDidMount () {
-    this.props.fetchTeam(this.props.id)
-    this.props.fetchCheckins(this.props.id)
+    const {fetchCheckins, fetchTeam, id} = this.props
+    firebase
+      .database()
+      .ref('checkins')
+      .on('value', snapshot => fetchCheckins(id))
+    fetchTeam(id)
+    fetchCheckins(id)
   }
   render () {
     const {currentUser, team, checkins, isFetching} = this.props
@@ -101,9 +106,9 @@ const mapStateToProps = (state, ownProps) => {
   const team = state.teams.byId[id]
   return {
     currentUser: state.currentUser,
-    team: team || {},
+    team: team,
     checkins: state.checkins.byId,
-    isFetching: state.checkins.isFetching
+    isFetching: state.checkins.isFetching || state.teams.isFetching
   }
 };
 

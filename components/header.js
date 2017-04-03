@@ -1,31 +1,20 @@
 import Link from 'next/link'
 import React from 'react'
-
+import configureApp from '../lib/configureApp'
+import withRedux from 'next-redux-wrapper'
 import {auth} from '../lib/firebase'
-import firebase from 'firebase'
 
-export default class extends React.Component {
+class Header extends React.Component {
   constructor () {
     super()
-    this.state = {currentUser: null, mobileMenuVisible: false}
+    this.state = {mobileMenuVisible: false}
     this.toggleMobileMenu = this.toggleMobileMenu.bind(this)
-  }
-  componentDidMount () {
-    firebase
-      .auth()
-      .onAuthStateChanged(user => {
-        if (user) {
-          this.setState({currentUser: user})
-        } else {
-          this.setState({currentUser: null})
-        }
-      })
-      .bind(this)
   }
   toggleMobileMenu () {
     this.setState({mobileMenuVisible: !this.state.mobileMenuVisible})
   }
   render () {
+    console.log(this.props)
     return (
       <div>
         <nav className="nav has-shadow">
@@ -35,23 +24,32 @@ export default class extends React.Component {
             </div>
           </div>
           <MenuButton
-            currentUser={this.state.currentUser}
+            currentUser={this.props.currentUser}
             menuClick={e => {
               this.toggleMobileMenu()
             }}
           />
-          <HeaderMenu currentUser={this.state.currentUser} />
+          <HeaderMenu currentUser={this.props.currentUser} />
         </nav>
 
         <MobileMenu
           visibility={this.state.mobileMenuVisible}
           toggleMenu={this.toggleMobileMenu}
-          currentUser={this.state.currentUser}
+          currentUser={this.props.currentUser}
         />
       </div>
     )
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    currentUser: state.currentUser
+  }
+};
+
+Header = withRedux(configureApp, state => mapStateToProps, {})(Header)
+
+export default Header
 
 const MenuButton = ({currentUser, menuClick}) => {
   if (currentUser) {
