@@ -30,6 +30,18 @@ export const fetchTeam = id =>
     )
   };
 
+export const fetchUserTeams = userId =>
+  dispatch => {
+    dispatch({type: FETCH_TEAM_REQUEST})
+    db.currentUserRef().on('value', snap => {
+      db.fetchUserData(userId).then(userData => {
+        const teams = userData.val().teams
+        if (teams) {
+          db.fetchTeams(teams).then(teams => dispatch(fetchTeamSuccess(teams)))
+        }
+      })
+    })
+  };
 // Selectors
 
 // Reducers
