@@ -63,10 +63,10 @@ const ListItem = ({teamId, name, owner, members, onClick, joinCode}) => {
           </p>
         </div>
         <div className="card-footer">
-          <Link href={`/manageTeam?id=${teamId}`}>
+          <Link prefetch href={`/manageTeam?id=${teamId}`}>
             <a className="card-footer-item" href="#">GO TO TEAM</a>
           </Link>
-          <Link href={`/checkIn?id=${teamId}`}>
+          <Link prefetch href={`/checkIn?id=${teamId}`}>
             <a className="card-footer-item" href="#">CHECK IN</a>
           </Link>
         </div>
