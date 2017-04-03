@@ -29,20 +29,18 @@ export default class extends React.Component {
     return (
       <div>
         <nav className="nav has-shadow">
-          <div className="container">
-            <div className="nav-left">
-              <div className="nav-item">
-                <p className="title">CheckIt</p>
-              </div>
+          <div className="nav-left">
+            <div className="nav-item">
+              <p className="title">CheckIt</p>
             </div>
-            <MenuButton
-              currentUser={this.state.currentUser}
-              menuClick={e => {
-                this.toggleMobileMenu()
-              }}
-            />
-            <HeaderMenu currentUser={this.state.currentUser} />
           </div>
+          <MenuButton
+            currentUser={this.state.currentUser}
+            menuClick={e => {
+              this.toggleMobileMenu()
+            }}
+          />
+          <HeaderMenu currentUser={this.state.currentUser} />
         </nav>
 
         <MobileMenu
@@ -102,7 +100,7 @@ const HeaderMenu = ({currentUser, menuClick}) => {
       </span>
     </div>
   )
-}
+};
 
 const MobileMenu = ({visibility, currentUser, toggleMenu}) => {
   if (visibility) {
