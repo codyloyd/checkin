@@ -55,7 +55,7 @@ export const byId = (state = defaultState.byId, action) => {
   const {type, response} = action
   switch (type) {
     case FETCH_TEAM_SUCCESS:
-      return {...state, ...response}
+      return {...response}
     default:
       return state
   }

@@ -17,7 +17,7 @@ import ManagementTools from './ManagementTools'
 import Member from './Member'
 import Checkin from './Checkin'
 
-class ManageTeam extends React.Component {
+class Page extends React.Component {
   static async getInitialProps ({req, query: {id}}) {
     return {id}
   }
@@ -36,9 +36,9 @@ class ManageTeam extends React.Component {
       return isFetching
         ? <Loading />
         : <Layout>
-            <TeamDetails {...team} />
+            <TeamDetails {...this.props.team} />
             <ManagementTools
-              visible={currentUser === team.owner}
+              visible={currentUser === team.ownerId}
               teamId={this.props.id}
             />
             <div className="section">
@@ -52,7 +52,7 @@ class ManageTeam extends React.Component {
                     </p>
                     <div className="section is-hidden-mobile">
                       <p className="title has-text-centered">Members:</p>
-                      {team.members.map(member => (
+                      {this.props.team.members.map(member => (
                         <Member
                           key={member}
                           member={member}
@@ -105,16 +105,16 @@ const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps
   const team = state.teams.byId[id]
   return {
+    isFetching: state.teams.isFetching,
     currentUser: state.currentUser,
     team: team,
-    checkins: state.checkins.byId,
-    isFetching: state.checkins.isFetching || state.teams.isFetching
+    checkins: state.checkins.byId
   }
 };
 
-ManageTeam = withRedux(configureApp, state => mapStateToProps, {
+Page = withRedux(configureApp, state => mapStateToProps, {
   fetchTeam,
   fetchCheckins
-})(ManageTeam)
+})(Page)
 
-export default ManageTeam
+export default Page

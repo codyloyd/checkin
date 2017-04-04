@@ -18,7 +18,7 @@ class Layout extends React.Component {
           <link rel="icon" href="../static/favicon.ico" />
         </Head>
         <Header />
-        <div className="">
+        <div>
           {this.props.children}
         </div>
       </div>

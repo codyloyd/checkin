@@ -1,6 +1,7 @@
 import React from 'react'
 import Router from 'next/router'
 import {db} from '../../lib/firebase'
+
 class ManagementTools extends React.Component {
   constructor () {
     super()
