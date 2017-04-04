@@ -7,7 +7,7 @@ class Layout extends React.Component {
     return (
       <div>
         <Head>
-          <title>{this.props.title}</title>
+          <title>CHECKIT✔️</title>
           <meta charSet="utf-8" />
           <meta
             name="viewport"

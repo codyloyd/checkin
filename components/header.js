@@ -14,7 +14,6 @@ class Header extends React.Component {
     this.setState({mobileMenuVisible: !this.state.mobileMenuVisible})
   }
   render () {
-    console.log(this.props)
     return (
       <div>
         <nav className="nav has-shadow">
